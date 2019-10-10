@@ -1,1 +1,1 @@
-# makeupyourmind
+# MakeYourMind

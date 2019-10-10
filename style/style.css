@@ -1,0 +1,366 @@
+/*Font Setting Zone*/
+@font-face {
+    font-family: kanit_thin;
+    src: url('./font/Kanit-Thin.ttf');
+}
+@font-face {
+    font-family: kanit_light;
+    src: url('./font/Kanit-Light.ttf');
+}
+@font-face {
+    font-family: kanit_regular;
+    src: url('./font/Kanit-Regular.ttf');
+}
+@font-face {
+    font-family: kanit_semibold;
+    src: url('./font/Kanit-SemiBold.ttf.ttf');
+}
+@font-face {
+    font-family: kanit_bold;
+    src: url('./font/Kanit-Bold.ttf');
+}
+
+/*placeholder color*/
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #B3B3B3;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #B3B3B3;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #B3B3B3;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #B3B3B3;
+}
+
+/*sweetalert*/
+.btn-danger{
+  color: #F0F0F0;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+.btn-lg, .btn-group-lg>.btn{
+  padding: 14px 24px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+.btn-default{ /*Cancel button*/
+  color: #2a2a2a;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+.btn-primary{ /*button in warning*/
+  color: #fff;
+  font-size: 16px;
+  font-family: kanit_bold;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+body{
+  font-family: kanit_regular;
+  background-image: url('../image/background.jpg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.content{
+  width: 1250px;
+  padding-bottom: 50px;
+  margin: auto;
+}
+.content h1{
+  color: #F0F0F0;
+  font-size: 56px;
+  font-family: kanit_light;
+  margin: 0;
+}
+.content h2{
+  color: #F0F0F0;
+  text-align: center;
+  font-size: 36px;
+  font-family: kanit_light;
+  margin: 0;
+}
+.content h3{
+  color: #F0F0F0;
+  text-align: center;
+  font-size: 32px;
+  font-family: kanit_light;
+  margin: 0;
+  margin-bottom: 25px;
+}
+input[type="text"]{
+  display: block;
+  border: none;
+  outline: none;
+  padding: 14px 16px;
+  padding-left: 25px;
+  font-family: kanit_regular;
+  box-sizing: border-box;
+}
+input[type="submit"]{
+  display: block;
+  outline: none;
+  font-family: kanit_bold;
+  box-sizing: border-box;
+}
+textarea{
+  display: block;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 14px 15px;
+  padding-left: 25px;
+  font-family: kanit_regular;
+  box-sizing: border-box;
+}
+button{
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+/*Topic Style*/
+.topic_zone{
+  margin: auto;
+  margin-top: 200px;
+  width: 650px;
+  margin-right: auto;
+  text-align: center;
+  transition: 0.5s;
+}
+.topic_zone h3{
+  margin-bottom: 25px;
+}
+.topic_form input[type="text"]{
+  width: 100%;
+  background-color: rgba(0,0,0,0.6);
+  color: #F16645;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  transition: 0.3s;
+}
+.topic_form input[type="text"]:focus{
+  background-color: rgba(255,255,255,0.05);
+  color: #F0F0F0;
+  padding: 13px 16px;
+  border: 1px solid #FFFFFF;
+}
+.topic_form input[type="submit"]{
+  width: 30%;
+  background-color: rgba(241, 102, 69, 0.9);
+  color: #F0F0F0;
+  border: none;
+  border-radius: 5px;
+  margin: auto;
+  padding: 10px 40px;
+  font-size: 20px;
+  transition: 0.6s;
+}
+.topic_form input[type="submit"]:hover{
+  cursor: pointer;
+  background-color: rgba(240,240,240,0.15);
+}
+#after_submit{
+  text-align: center;
+}
+
+/*Choice form*/
+.form{
+  display: block;
+  width: 1000px;
+  padding: 10px;
+  margin: auto;
+  overflow: auto;
+  box-sizing: border-box;
+}
+.form input[type="text"]{
+  width: 75%;
+  float: left;
+  margin-left: 7.5%;
+  padding: 10px 12px;
+  padding-left: 25px;
+  background-color: rgba(0,0,0,0.6);
+  color: #F0F0F0;
+  font-size: 20px;
+  transition: 0.3s;
+}
+.form input[type="text"]:focus{
+  background-color: rgba(255,255,255,0.05);
+  color: #F0F0F0;
+  padding: 9px 12px;
+  border: 1px solid #FFFFFF;
+}
+.form button{
+  width: 10%;
+  border-radius: 0px;
+  background-color: rgba(255, 105, 97, 0.9);
+  color: #F0F0F0;
+  padding: 10px 12px;
+  font-family: kanit_bold;
+  font-size: 20px;
+  transition: 0.6s;
+}
+.form button:hover{
+  cursor: pointer;
+  background-color: rgba(240,240,240,0.15);
+}
+
+/*Benefit and disadvantage*/
+.bedis_form{
+  width: 100%;
+  display: inline-block;
+  float: none;
+}
+#benefitremove{
+  width: 20%;
+  padding: 25px 12px;
+  color: #F0F0F0;
+  background-color: #5AB4BE;
+  border: none;
+}
+#disadvantageremove{
+  width: 20%;
+  padding: 25px 12px;
+  color: #F0F0F0;
+  background-color: #BE645A;
+  border: none;
+}
+
+/*Benefit Zone*/
+.benefit_form{
+  width: 48%;
+  float: left;
+  padding: 15px;
+  box-sizing: border-box;
+}
+.benefit_form h3{
+  color: #5AB4BE;
+  font-family: kanit_bold;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #F0F0F0;
+  margin-bottom: 5px
+}
+.benefit_form textarea{
+  width: 80%;
+  float: left;
+  margin-bottom: 5px;
+  padding: 10px 12px;
+  padding-left: 25px;
+  background-color: rgba(0,0,0,0.6);
+  color: #F0F0F0;
+  font-size: 20px;
+  transition: 0.3s;
+}
+.benefit_form textarea:focus{
+  background-color: rgba(255,255,255,0.05);
+  color: #F0F0F0;
+  padding: 9px 12px;
+  border: 1px solid #FFFFFF;
+}
+.benefit_form button{
+  width: 100%;
+  color: #69DBE7;
+  background-color: rgba(255,255,255,0.05);
+  border: 3px solid #5AB4BE;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+}
+.benefit_form button:hover{
+  cursor: pointer;
+  color: #F0F0F0;
+  background-color: #5AB4BE;
+}
+
+/*disadvantage Zone*/
+.disadvantage_form{
+  width: 48%;
+  margin-left: 4%;
+  float: left;
+  padding: 15px;
+  box-sizing: border-box;
+}
+.disadvantage_form h3{
+  color: #F38073;
+  font-family: kanit_bold;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #F0F0F0;
+  margin-bottom: 5px
+}
+.disadvantage_form textarea{
+  width: 80%;
+  float: left;
+  margin-bottom: 5px;
+  padding: 10px 12px;
+  padding-left: 25px;
+  background-color: rgba(0,0,0,0.6);
+  color: #F0F0F0;
+  font-size: 20px;
+  transition: 0.3s;
+}
+.disadvantage_form textarea:focus{
+  background-color: rgba(255,255,255,0.05);
+  color: #F0F0F0;
+  padding: 9px 12px;
+  border: 1px solid #FFFFFF;
+}
+.disadvantage_form button{
+  width: 100%;
+  color: #F38073;
+  background-color: rgba(255,255,255,0.05);
+  border: 3px solid #F38073;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+}
+.disadvantage_form button:hover{
+  cursor: pointer;
+  color: #F0F0F0;
+  background-color: #F38073;
+}
+
+/*add choice and make a choice button*/
+#add_choice{
+  width: 46%;
+  margin-top: 2px;
+  color: #C3C3C3;
+  float: left;
+  background-color: #367588;
+  box-sizing: border-box;
+  transition: 0.2s;
+}
+#add_choice:hover{
+  color: #fff;
+  background-color: #4EA8C3;
+}
+#center_choice{
+  width: 8%;
+  padding: 12px 16px;
+  float: left;
+  background-color: #35BBAD;
+  border-radius: 1px;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+#center_choice:hover{
+  color: #fff;
+  height: 70px;
+  background-color: #F16645;
+}
+#make_choice{
+  width: 46%;
+  margin-top: 2px;
+  color: #C3C3C3;
+  float: left;
+  background-color: #884936;
+  box-sizing: border-box;
+  transition: 0.2s;
+}
+#make_choice:hover{
+  color: #fff;
+  background-color: #D88B5C;
+}

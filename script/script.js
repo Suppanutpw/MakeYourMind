@@ -13,7 +13,6 @@ topic_form.onsubmit = function(e){
   hide_button.innerHTML = '<input id="after_submit" type="text" name="topic" value="' + hide_button.topic.value + '" placeholder="หัวข้อในการตัดสินใจ">'
 
   document.getElementById('topic_zone').style.cssText = 'top: 87px;';
-
   setTimeout(function() {
     document.getElementById("topic_zone").classList.remove('before_submit');
     add_choice_form();
@@ -30,14 +29,20 @@ function choice_input_form(i, choiceName=""){
   all_form += '<button type="submit" onclick="remove_choice_form(' + (i) + ')">ลบ</button><br>';
   return all_form;
 }
-function benefit_input_form(i, j, banefit_var=""){
+function benefit_input_form(i, j, banefit_var="", isnewblock=false){
   all_form = '<textarea name="benefitData'+ (i) + (j) +'" class="benefit_input' + (i) + '" placeholder="ข้อดี/ประโยชน์ที่ได้รับ">' + banefit_var + '</textarea>';
-  all_form += '<button id="benefitremove" type="submit" onclick="remove_benefit_form(' + (i) + ', ' + (j) + ')">ลบ</button>'
+  all_form += '<button id="benefitremove" type="submit" onclick="remove_benefit_form(' + (i) + ', ' + (j) + ')">ลบ</button>';
+
+  if (isnewblock)
+    all_form = '<div id="addbedis_form" class="addbedis_form">' + all_form + '</div>';
   return all_form;
 }
-function disadvantage_input_form(i, j, disadvantage_var=""){
+function disadvantage_input_form(i, j, disadvantage_var="", isnewblock=false){
   all_form = '<textarea name="disadvantage_Data'+ (i) + (j) +'" class="disadvantage_input' + (i) + '" placeholder="ข้อเสีย/ความเสี่ยงที่จะเกิด">' + disadvantage_var + '</textarea>';
-  all_form += '<button id="disadvantageremove" type="submit" onclick="remove_disadvantage_form(' + (i) + ', ' + (j) + ')">ลบ</button>'
+  all_form += '<button id="disadvantageremove" type="submit" onclick="remove_disadvantage_form(' + (i) + ', ' + (j) + ')">ลบ</button>';
+
+  if (isnewblock)
+    all_form = '<div id="addbedis_form" class="addbedis_form">' + all_form + '</div>';
   return all_form;
 }
 function add_benefit_button(i){
@@ -49,7 +54,7 @@ function add_disadvantage_button(i){
 function add_choice_button(){
   addform = '<div class="bottom_button"><button id="add_choice" onclick="add_choice_form()" name="addchoice">เพิ่มทางเลือก</button>';
   addform += '<button id="center_choice" onclick="gototop()"><i class="fa fa-angle-double-up"></i></button>';
-  addform += '<button id="make_choice" onclick="calculate()" name="submit">ตัดสินใจ</button><div>';
+  addform += '<button id="make_choice" onclick="makeupchoice()" name="submit">ตัดสินใจ</button><div>';
   return addform;
 }
 
@@ -71,7 +76,7 @@ function add_benefit_form(choiceindex){ //add benefit form
     for (j=0; j<loop_count; j++)
       all_form += benefit_input_form(i, j, banefit_var=benefit_data[j].value);
     if (i == choiceindex)
-      all_form += benefit_input_form(i, j);
+      all_form += benefit_input_form(i, j, '', isnewblock=true); //For new block animation
     all_form += add_benefit_button(i) + '</div>';
 
     //disadvantage Form
@@ -84,6 +89,9 @@ function add_benefit_form(choiceindex){ //add benefit form
   all_form += add_choice_button();
 
   showform.innerHTML = all_form; //Show in choice_form
+  setTimeout(function() {
+    document.getElementById("addbedis_form").classList.remove('addbedis_form'); //Remove Class for fade in animation
+  }, 10);
 }
 
 function add_disadvantage_form(choiceindex){ //add disadvantage form
@@ -110,12 +118,15 @@ function add_disadvantage_form(choiceindex){ //add disadvantage form
     for (j=0; j<loop_count; j++)
       all_form += disadvantage_input_form(i, j, disadvantage_var=disadvantage_data[j].value);
     if (i == choiceindex)
-      all_form += disadvantage_input_form(i, j);
+      all_form += disadvantage_input_form(i, j, '', isnewblock=true);
     all_form += add_disadvantage_button(i) + '</div></div>';
   }
   all_form += add_choice_button();
 
   showform.innerHTML = all_form; //Show in choice_form
+  setTimeout(function() {
+    document.getElementById("addbedis_form").classList.remove('addbedis_form'); //Remove Class for fade in animation
+  }, 10);
 }
 
 function remove_benefit_form(remove_i, remove_j){
@@ -211,14 +222,16 @@ function add_choice_form(){ //Add Choice input +1 form
     }
   }
   benefit_data_count[choice_count - 1] = disadvantage_data_count[choice_count - 1] = 0;
-  all_form += choice_input_form(choice_count-1); //New input
+  all_form += '<div class="addchoice_form" id="addchoice_form">' + choice_input_form(choice_count-1); //New input
   all_form += '<div class="bedis_form"><div class="benefit_form"><h3>ข้อดี/ผลประโยชน์</h3>' + add_benefit_button(choice_count-1) + '</div>';
   all_form += '<div class="disadvantage_form"><h3>ข้อเสีย/ความเสี่ยง</h3>' + add_disadvantage_button(choice_count-1) + '</div></div>';
 
-  all_form += add_choice_button();
+  all_form += add_choice_button() + '</div>';
 
   showform.innerHTML = all_form; //Show in choice_form
-  showform.style.opacity = 1;
+  setTimeout(function() {
+    document.getElementById("addchoice_form").classList.remove('addchoice_form'); //Remove Class for fade in animation
+  }, 10);
 }
 
 function remove_choice_form(choiceindex){
@@ -275,8 +288,8 @@ function remove_choice_form(choiceindex){
   });
 }
 
-function calculate(){
-  all_output = ""
+function makeupchoice(){
+  result_output = '<center><h1>Make<span style="color: #F16645;">Your</span>Mind</h1>';
 
   var showoutput = document.getElementById('result');
   var bedis_ratio = [], benefit_length = [], disadvantage_length = [], choice_array = [];
@@ -333,28 +346,71 @@ function calculate(){
       type: "warning",
     });
     return 0;
-  }
-
-  if (max_count != 0){
-    all_output += '<h2>ฉันลังเลระหว่าง ';
+  }if (max_count != 0){
+    result_output += '<h2>ฉันลังเลระหว่าง <span style="color: #F16645;">';
     for (i=0; i<max_count; i++){
-      all_output += choice_array[pos[i]] + ', ';
+      result_output += choice_array[pos[i]] + ', ';
     }
-    all_output += choice_array[pos[i]] + '</h2>'
+    result_output += choice_array[pos[i]] + '</span></h2>'
   }else{
     if (ratio_max > 1.5){
-      all_output += '<h2>ลอง ' + choice_array[pos] + ' ไปเลย!!!</h2>';
+      result_output += '<h2>ลอง <span style="color: #F16645;">' + choice_array[pos] + '</span> ไปเลย!!!</h2>';
     }else if (ratio_max > 1){
-      all_output += '<h2>ลอง ' + choice_array[pos] + ' ดูสิ</h2>';
+      result_output += '<h2>ลอง <span style="color: #F16645;">' + choice_array[pos] + '</span> ดูสิ</h2>';
     }else if (ratio_max > 0.8) {
-      all_output += '<h2>ก็คุ้มค่าที่จะลอง ' + choice_array[pos] + ' อยู่นะ</h2>';
+      result_output += '<h2>ก็คุ้มค่าที่จะลอง <span style="color: #F16645;">' + choice_array[pos] + '</span> อยู่นะ</h2>';
     }else if (ratio_max > 0.5) {
-      all_output += '<h2>จะลองเสี่ยง ' + choice_array[pos] + ' ดูมั้ย?</h2>';
+      result_output += '<h2>จะลองเสี่ยง <span style="color: #F16645;">' + choice_array[pos] + '</span> ดูมั้ย?</h2>';
     }else{
-      all_output += '<h2>ไม่ควรที่จะลองอะไรแต่เสี่ยง ' + choice_array[pos] + ' ดูก็ได้</h2>';
+      result_output += '<h2>ไม่ควรที่จะลองอะไรแต่เสี่ยง <span style="color: #F16645;">' + choice_array[pos] + '</span> ดูก็ได้</h2>';
     }
   }
-  all_output += '<h3>ทางเลือกการตัดสินใจสุดท้ายเป็นของคุณ เลือกในทางที่อยู่ในใจตัวเองดีกว่า</h3>'
+  result_output += '<h3>ทางเลือก<span style="color: #F63535;">การตัดสินใจสุดท้ายเป็นของคุณ</span>เลือกในทาง<span style="color: #F63535;">ตามใจตัวเอง</span>ดีกว่า</h3>'
 
-  showoutput.innerHTML = all_output;
+  //MakeYourMind Animation
+  //Fade out
+  document.getElementById("contentid").style.transition = "0.3s";
+  document.getElementById("contentid").style.opacity = 0;
+  setTimeout(function() {
+    document.getElementById("contentid").style.display = "none";
+  }, 300);
+
+  //2 ปุ่มสุดท้ายคือปุ่มแก้ กับรีเฟรชหน้าใหม่ (มี center เหมือนเดิม)
+  setTimeout(function() {
+    showoutput.innerHTML = result_output + show_table(bedis_ratio);
+  }, 500);
+
+  //Fade In
+  /*setTimeout(function() {
+    document.getElementById("contentid").style.opacity = 1;
+    document.getElementById("contentid").style.display = "block";
+  }, 500);*/
+}
+
+function show_table(bedis_ratio){
+  var result_output = '<h2 style="font-size: 42px; font-family: kanit_bold;">ทางเลือกทั้งหมดจาก ' + document.getElementById('topic_form').topic.value  + '</h2><br><center><table>';
+
+  var choice_data = document.getElementsByClassName('choice_input');
+  for (i=0; i<choice_count; i++){
+    if (bedis_ratio[i] == 0)
+      continue;
+    result_output += '<tr class="topic_row"><th colspan="2">--- ' + choice_data[i].value + ' ---</th></tr>'; //Topic Name Row
+    result_output += '<tr><th class="benefit_topic_col">ข้อดี/ผลประโยชน์</th><th class="disadvantage_topic_col">ข้อเสีย/ความเสี่ยง</th></tr>'; //Benefit and Disadventage Topic Row
+
+    //Benefit form
+    result_output += '<tr><td class="benefit_col">';
+    var benefit_data = document.getElementsByClassName('benefit_input' + i);
+    for (j=0; j<benefit_data_count[i]; j++)
+      result_output += '<span>' + benefit_data[j].value + '</span>';
+    result_output += '</td>';
+
+    //disadvantage form
+    result_output += '<td class="disadvantage_col">';
+    var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i);
+    for (j=0; j<disadvantage_data_count[i]; j++)
+      result_output += '<span>' + disadvantage_data[j].value + '</span>';
+    result_output += '</td></tr>';
+  }
+
+  return result_output + '</table>';
 }

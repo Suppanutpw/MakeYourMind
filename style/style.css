@@ -76,6 +76,73 @@ body{
 div{
   box-sizing: border-box;
 }
+
+/*Table Result*/
+table{
+  margin: auto;
+  width: 1000px;
+  color: #F0F0F0;
+  border-collapse: collapse;
+  border-top: 2px solid #f0f0f0;
+  border-bottom: 2px solid #f0f0f0;
+  box-shadow: 0px 0px 10px;
+}
+th{
+  font-family: kanit_bold;
+  padding: 15px 20px;
+}
+td{
+  font-family: kanit_regular;
+  padding: 15px 20px;
+}
+.topic_row{
+  font-size: 42px;
+  font-family: kanit_regular;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-left: 2px solid #f0f0f0;
+  border-right: 2px solid #f0f0f0;
+}
+.benefit_topic_col{
+  font-size: 28px;
+  background-color: #275563;
+  border-left: 2px solid #f0f0f0;
+}
+.disadvantage_topic_col{
+  font-size: 28px;
+  background-color: #763926;
+  border-right: 2px solid #f0f0f0;
+}
+.benefit_col{
+  font-size: 20px;
+  text-align: center;
+  vertical-align: top;
+  width: 50%;
+  background-color: #367588;
+  border-left: 2px solid #f0f0f0;
+}
+.benefit_col span{
+  text-align: center;
+  display: block;
+  margin-bottom: 18px;
+  padding: 0px 12px;
+  border-left: 3px solid #224955;
+}
+.disadvantage_col{
+  font-size: 18px;
+  text-align: center;
+  vertical-align: top;
+  width: 50%;
+  background-color: #884936;
+  border-right: 2px solid #f0f0f0;
+}
+.disadvantage_col span{
+  text-align: center;
+  display: block;
+  margin-bottom: 18px;
+  padding: 0px 12px;
+  border-right: 3px solid #552E22;
+}
+
 .content{
   width: 1250px;
   margin: auto;
@@ -362,11 +429,11 @@ button{
   background-color: #35BBAD;
   border-radius: 1px;
   box-sizing: border-box;
-  transition: 0.5s;
+  transition: all 0.3s ease-in-out;
 }
 #center_choice:hover{
   color: #fff;
-  height: 70px;
+  transform: scale(1.2);
   background-color: #F16645;
 }
 #make_choice{
@@ -382,9 +449,29 @@ button{
   color: #fff;
   background-color: #D88B5C;
 }
+#result{
+  margin-top: 50px;
+}
 
 /*Transtition Animation*/
-#choice_form{
+/*Fade in choice*/
+#addchoice_form{
+  transition: all 1s;
+}
+.addchoice_form{
   opacity: 0;
-  transition: 1s;
+}
+
+/*Fade in benefit and disadvantage*/
+#addbedis_form{
+  transition: all 1s;
+}
+.addbedis_form{
+  opacity: 0;
+}
+
+@media only screen and (max-width: 1250px) {
+  .before_submit{
+    left: 625px;
+  }
 }

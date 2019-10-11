@@ -65,13 +65,13 @@
 
 body{
   font-family: kanit_regular;
-  background-color: rgba(6, 12, 36);
+  margin: 0;
+  padding: 0;
+  background-color: #050A23;
   background-image: url('../image/background.jpg');
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  margin: 0;
-  padding: 0;
 }
 div{
   box-sizing: border-box;
@@ -94,6 +94,37 @@ th{
 td{
   font-family: kanit_regular;
   padding: 15px 20px;
+}
+input[type="text"]{
+  display: block;
+  border: none;
+  outline: none;
+  padding: 14px 16px;
+  padding-left: 25px;
+  font-family: kanit_regular;
+  box-sizing: border-box;
+}
+input[type="submit"]{
+  display: block;
+  outline: none;
+  font-family: kanit_bold;
+  box-sizing: border-box;
+}
+textarea{
+  display: block;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 14px 15px;
+  padding-left: 25px;
+  font-family: kanit_regular;
+  box-sizing: border-box;
+}
+button{
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  box-sizing: border-box;
 }
 .topic_row{
   font-size: 42px;
@@ -167,37 +198,6 @@ td{
   font-family: kanit_light;
   margin: 0;
   margin-bottom: 25px;
-}
-input[type="text"]{
-  display: block;
-  border: none;
-  outline: none;
-  padding: 14px 16px;
-  padding-left: 25px;
-  font-family: kanit_regular;
-  box-sizing: border-box;
-}
-input[type="submit"]{
-  display: block;
-  outline: none;
-  font-family: kanit_bold;
-  box-sizing: border-box;
-}
-textarea{
-  display: block;
-  resize: none;
-  border: none;
-  outline: none;
-  padding: 14px 15px;
-  padding-left: 25px;
-  font-family: kanit_regular;
-  box-sizing: border-box;
-}
-button{
-  border: none;
-  border-radius: 5px;
-  display: inline-block;
-  box-sizing: border-box;
 }
 
 /*Topic Style*/
@@ -452,6 +452,14 @@ button{
 #result{
   margin-top: 50px;
 }
+.show{
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+.hide{
+  opacity: 0;
+  transition: opacity 0.5s;
+}
 
 /*Transtition Animation*/
 /*Fade in choice*/
@@ -463,11 +471,51 @@ button{
 }
 
 /*Fade in benefit and disadvantage*/
+.addbedis_form{
+  opacity: 0;
+}
 #addbedis_form{
   transition: all 1s;
 }
-.addbedis_form{
+
+.content_beforeloading{
   opacity: 0;
+}
+#contentid{
+  transition: all 1s;
+}
+/*Loading Style*/
+.loading_spinner{
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-color: #F0F0F0;
+
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+
+  margin: 100px auto;
+  -webkit-animation: rotale_animation 1.2s infinite ease-in-out;
+  animation: rotale_animation 1.2s infinite ease-in-out;
+}
+@-webkit-keyframes rotale_animatione{
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+@keyframes rotale_animation{
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  } 50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  } 100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
 }
 
 @media only screen and (max-width: 1250px) {

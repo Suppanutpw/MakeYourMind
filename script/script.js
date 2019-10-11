@@ -5,8 +5,8 @@ var choice_count = 0;
 var benefit_data_count = [];
 var disadvantage_data_count = [];
 
-topic_form.onsubmit = function(e){
-  e.preventDefault();
+topic_form.onsubmit = function(events){
+  events.preventDefault();
 
   //Hide Submit button after first click
   var hide_button = document.getElementById('topic_form');
@@ -19,8 +19,31 @@ topic_form.onsubmit = function(e){
   }, 400);
 }
 
+//Loading Page
+function loading(time){
+  var loading = document.getElementsByClassName("loading_spinner");
+  document.getElementById("loading").style.display = "block";
+
+  fadein(document.getElementById("loading")); //Fade in loader
+  setTimeout(function() {fadeout(document.getElementById("loading"));}, time-500); //Fade out before show content 0.5s (transition times)
+
+  setTimeout(function() {
+    document.getElementById("contentid").classList.remove('content_beforeloading');
+    document.getElementById("loading").style.display = "none";
+  }, time);
+}
+//Go to top when click Center button
 function gototop(){
   window.scrollTo({top: 0, behavior: 'smooth'});
+}
+//Fade in animation
+function fadein(element){
+  element.classList.add("show");
+  element.classList.remove("hide");
+}
+function fadeout(element){
+  element.classList.add("hide");
+  element.classList.remove("show");
 }
 
 //ALL INPUT FORM
@@ -328,7 +351,7 @@ function makeupchoice(){
       max_count = 0;
       pos[max_count] = i;
     }else if (ratio_max == bedis_ratio[i]) {
-      if (benefit_data_count[i] > benefit_data_count[pos] || disadvantage_data_count[i] < benefit_data_count[pos]){
+      if (benefit_data_count[i] > benefit_data_count[pos] || disadvantage_data_count[i] < benefit_data_count[pos]){ //if ratio equal try to check number of benefit/disadvantage list
         ratio_max = bedis_ratio[i];
         max_count = 0;
         pos[count] = i;
@@ -369,16 +392,21 @@ function makeupchoice(){
 
   //MakeYourMind Animation
   //Fade out
-  document.getElementById("contentid").style.transition = "0.3s";
   document.getElementById("contentid").style.opacity = 0;
+  document.getElementById("contentid").style.transition = "0.3s";
   setTimeout(function() {
     document.getElementById("contentid").style.display = "none";
+    loading(2000);
   }, 300);
 
-  //2 ปุ่มสุดท้ายคือปุ่มแก้ กับรีเฟรชหน้าใหม่ (มี center เหมือนเดิม)
+  fadeout(showoutput); //Hide Result for show animation
   setTimeout(function() {
     showoutput.innerHTML = result_output + show_table(bedis_ratio);
-  }, 500);
+    fadein(showoutput); //Show Resulr
+  }, 2300);
+
+  //2 ปุ่มสุดท้ายคือปุ่มแก้ กับรีเฟรชหน้าใหม่ (มี center เหมือนเดิม)
+  // อย่าลืมบวกปุ่มให้ดูตารางด้วย!!!
 
   //Fade In
   /*setTimeout(function() {

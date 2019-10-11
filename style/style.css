@@ -22,15 +22,19 @@
 
 /*placeholder color*/
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  text-align: left;
   color: #B3B3B3;
 }
 ::-moz-placeholder { /* Firefox 19+ */
+  text-align: left;
   color: #B3B3B3;
 }
 :-ms-input-placeholder { /* IE 10+ */
+  text-align: left;
   color: #B3B3B3;
 }
 :-moz-placeholder { /* Firefox 18- */
+  text-align: left;
   color: #B3B3B3;
 }
 
@@ -61,33 +65,38 @@
 
 body{
   font-family: kanit_regular;
+  background-color: rgba(6, 12, 36);
   background-image: url('../image/background.jpg');
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+div{
+  box-sizing: border-box;
 }
 .content{
   width: 1250px;
-  padding-bottom: 50px;
   margin: auto;
 }
 .content h1{
   color: #F0F0F0;
-  font-size: 56px;
+  font-size: 64px;
   font-family: kanit_light;
   margin: 0;
 }
 .content h2{
   color: #F0F0F0;
   text-align: center;
-  font-size: 36px;
+  font-size: 48px;
   font-family: kanit_light;
   margin: 0;
 }
 .content h3{
   color: #F0F0F0;
   text-align: center;
-  font-size: 32px;
+  font-size: 36px;
   font-family: kanit_light;
   margin: 0;
   margin-bottom: 25px;
@@ -127,18 +136,25 @@ button{
 /*Topic Style*/
 .topic_zone{
   margin: auto;
-  margin-top: 200px;
   width: 650px;
   margin-right: auto;
+  margin-top: 30px;
   text-align: center;
-  transition: 0.5s;
 }
 .topic_zone h3{
   margin-bottom: 25px;
 }
+/*Topic Zone Before Submit*/
+.before_submit{
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -35%);
+  transition: 0.4s;
+}
 .topic_form input[type="text"]{
   width: 100%;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   color: #F16645;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -146,7 +162,7 @@ button{
   transition: 0.3s;
 }
 .topic_form input[type="text"]:focus{
-  background-color: rgba(255,255,255,0.05);
+  background-color: rgba(255, 255, 255, 0.05);
   color: #F0F0F0;
   padding: 13px 16px;
   border: 1px solid #FFFFFF;
@@ -164,7 +180,7 @@ button{
 }
 .topic_form input[type="submit"]:hover{
   cursor: pointer;
-  background-color: rgba(240,240,240,0.15);
+  background-color: rgba(240, 240, 240, 0.15);
 }
 #after_submit{
   text-align: center;
@@ -185,14 +201,16 @@ button{
   margin-left: 7.5%;
   padding: 10px 12px;
   padding-left: 25px;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   color: #F0F0F0;
   font-size: 20px;
-  transition: 0.3s;
+  text-align: center;
+  transition: 0.5s;
 }
 .form input[type="text"]:focus{
-  background-color: rgba(255,255,255,0.05);
+  background-color: rgba(255, 255, 255, 0.05);
   color: #F0F0F0;
+  text-align: left;
   padding: 9px 12px;
   border: 1px solid #FFFFFF;
 }
@@ -208,7 +226,7 @@ button{
 }
 .form button:hover{
   cursor: pointer;
-  background-color: rgba(240,240,240,0.15);
+  background-color: rgba(240, 240, 240, 0.15);
 }
 
 /*Benefit and disadvantage*/
@@ -252,13 +270,13 @@ button{
   margin-bottom: 5px;
   padding: 10px 12px;
   padding-left: 25px;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   color: #F0F0F0;
   font-size: 20px;
   transition: 0.3s;
 }
 .benefit_form textarea:focus{
-  background-color: rgba(255,255,255,0.05);
+  background-color: rgba(255, 255, 255, 0.05);
   color: #F0F0F0;
   padding: 9px 12px;
   border: 1px solid #FFFFFF;
@@ -266,7 +284,7 @@ button{
 .benefit_form button{
   width: 100%;
   color: #69DBE7;
-  background-color: rgba(255,255,255,0.05);
+  background-color: rgba(255, 255, 255, 0.05);
   border: 3px solid #5AB4BE;
   padding: 10px 12px;
   margin-bottom: 15px;
@@ -298,13 +316,13 @@ button{
   margin-bottom: 5px;
   padding: 10px 12px;
   padding-left: 25px;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   color: #F0F0F0;
   font-size: 20px;
   transition: 0.3s;
 }
 .disadvantage_form textarea:focus{
-  background-color: rgba(255,255,255,0.05);
+  background-color: rgba(255, 255, 255, 0.05);
   color: #F0F0F0;
   padding: 9px 12px;
   border: 1px solid #FFFFFF;
@@ -312,7 +330,7 @@ button{
 .disadvantage_form button{
   width: 100%;
   color: #F38073;
-  background-color: rgba(255,255,255,0.05);
+  background-color: rgba(255, 255, 255, 0.05);
   border: 3px solid #F38073;
   padding: 10px 12px;
   margin-bottom: 15px;
@@ -363,4 +381,10 @@ button{
 #make_choice:hover{
   color: #fff;
   background-color: #D88B5C;
+}
+
+/*Transtition Animation*/
+#choice_form{
+  opacity: 0;
+  transition: 1s;
 }

@@ -110,6 +110,8 @@ input[type="submit"]{
   outline: none;
   font-family: kanit_bold;
   box-sizing: border-box;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
 }
 textarea{
   display: block;
@@ -126,8 +128,6 @@ button{
   border-radius: 5px;
   display: inline-block;
   box-sizing: border-box;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
 }
 .topic_row{
   font-size: 42px;

@@ -5,7 +5,7 @@ var choice_count = 0, is_before_bedis = true;
 var benefit_data_count = [];
 var disadvantage_data_count = [];
 
-topic_form.onsubmit = function(events){
+topic_form.onsubmit = function(events){ //When Form onsubmit
   events.preventDefault();
 
   //Hide Submit button after first click
@@ -23,13 +23,15 @@ topic_form.onsubmit = function(events){
 function loading(time){
   var loading = document.getElementById("loading");
 
-  fadein(loading); //Fade in loader
+  gototop();
   loading.style.display = "block";
+  //fadein(loading); //Fade in loader
+  setTimeout(function() {fadein(loading);}, 10);
   setTimeout(function() {fadeout(loading);}, time-500); //Fade out before show content 0.5s (transition times)
 
   setTimeout(function() {
     loading.style.display = "none";
-    document.getElementById("contentid").classList.remove('content_beforeloading');
+    fadein(document.getElementById("contentid"));
   }, time);
 }
 //Go to top when click Center button
@@ -79,10 +81,17 @@ function add_choice_button(){
   addform = '<button id="add_choice" onclick="add_choice_form()" name="addchoice">เพิ่มทางเลือก</button>';
   addform += '<button id="center_choice" onclick="gototop()"><i class="fa fa-angle-double-up"></i></button>';
   if (is_before_bedis){
-    addform += '<button id="make_choice" onclick="addbenefit()" name="submit">เพิ่มข้อดี/ข้อเสีย</button></div>';
+    addform += '<button id="make_choice" onclick="addbenefit()" name="submit">เพิ่มข้อดี/ข้อเสีย</button>';
   }else{
     addform += '<button id="make_choice" onclick="makeupchoice()" name="submit">ตัดสินใจ</button>';
   }
+  return addform;
+}
+function retry_button(){
+  addform = '<div class="form retry" id="choice_form"><button id="add_choice" onclick="reform()" name="addchoice">แก้ไขแบบฟอร์ม</button>';
+  addform += '<button id="center_choice" onclick="gototop()"><i class="fa fa-angle-double-up"></i></button>';
+  addform += '<a href="./index.html"><button id="make_choice" name="submit">ตัดสินใจเรื่องใหม่</button></a></div>';
+
   return addform;
 }
 
@@ -397,7 +406,7 @@ function makeupchoice(){
       if (benefit_data_count[i] > benefit_data_count[pos] || disadvantage_data_count[i] < benefit_data_count[pos]){ //if ratio equal try to check number of benefit/disadvantage list
         ratio_max = bedis_ratio[i];
         max_count = 0;
-        pos[count] = i;
+        pos[max_count] = i;
       }else{
         max_count += 1;
         pos[max_count] = i;
@@ -436,26 +445,40 @@ function makeupchoice(){
   //MakeYourMind Animation
   //Fade out
   content = document.getElementById("contentid");
-  content.style.opacity = 0; //Fade out content
+  fadeout(content);
   setTimeout(function() { //loading and remove content with display
-    loading(2000);
     content.style.display = "none";
-  }, 300);
+    loading(2500);
+    showoutput.style.display = "block";
+  }, 500);
 
   fadeout(showoutput); //Hide Result for show animation
   setTimeout(function() {
     showoutput.innerHTML = result_output + show_table(bedis_ratio);
     fadein(showoutput); //Show Result
-  }, 2300);
+  }, 2800);
 
   //2 ปุ่มสุดท้ายคือปุ่มแก้ กับรีเฟรชหน้าใหม่ (มี center เหมือนเดิม)
   // อย่าลืมบวกปุ่มให้ดูตารางด้วย!!!
+}
+
+//call form again
+function reform(){
+  showoutput = document.getElementById('result'); //Table Result
+  content = document.getElementById("contentid");
+
+  fadeout(showoutput); //Show Result
+  setTimeout(function() { //loading and remove content with display
+    showoutput.style.display = "none"; //Remove block after fadeout
+    loading(2500);
+    content.style.display = "block";
+  }, 500);
 
   //Fade In
-  /*setTimeout(function() {
-    content.style.opacity = 1;
-    content.style.display = "block";
-  }, 500);*/
+  fadeout(content);
+  setTimeout(function() { //loading and remove content with display
+    fadein(content);
+  }, 2800);
 }
 
 function show_table(bedis_ratio){ //Result Table
@@ -483,5 +506,5 @@ function show_table(bedis_ratio){ //Result Table
     result_output += '</td></tr>';
   }
 
-  return result_output + '</table>';
+  return result_output + '</table>' + retry_button();
 }

@@ -80,6 +80,7 @@ div{
 /*Table Result*/
 table{
   margin: auto;
+  margin-bottom: 20px;
   width: 1000px;
   color: #F0F0F0;
   border-collapse: collapse;
@@ -125,6 +126,8 @@ button{
   border-radius: 5px;
   display: inline-block;
   box-sizing: border-box;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
 }
 .topic_row{
   font-size: 42px;
@@ -259,6 +262,7 @@ button{
   width: 1000px;
   padding: 10px;
   margin: auto;
+  margin-bottom: 30px;
   overflow: auto;
   box-sizing: border-box;
 }
@@ -297,6 +301,9 @@ button{
 }
 .choice_form{
   margin-bottom: 15px;
+}
+.retry{ /*Rerty button*/
+  width: 1150px;
 }
 
 /*Benefit and disadvantage*/
@@ -459,7 +466,7 @@ button{
 }
 .show{
   opacity: 1;
-  transition: opacity 0.5s;
+  transition: opacity 0.3s;
 }
 .hide{
   opacity: 0;
@@ -482,10 +489,6 @@ button{
 #addbedis_form{
   transition: all 1s;
 }
-
-.content_beforeloading{
-  opacity: 0;
-}
 #contentid{
   transition: 0.5s;
 }
@@ -506,9 +509,9 @@ button{
   animation: rotale_animation 1.2s infinite ease-in-out;
 }
 @-webkit-keyframes rotale_animatione{
-  0% { -webkit-transform: perspective(120px) }
-  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
-  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+  0% { -webkit-transform: perspective(120px); }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg); }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg); }
 }
 @keyframes rotale_animation{
   0% {

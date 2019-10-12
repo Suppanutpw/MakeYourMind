@@ -1,7 +1,7 @@
 var topic_form = document.getElementById('topic_form');
 var choice_form = document.getElementById('choice_form');
 
-var choice_count = 0;
+var choice_count = 0, is_before_bedis = true;
 var benefit_data_count = [];
 var disadvantage_data_count = [];
 
@@ -9,27 +9,27 @@ topic_form.onsubmit = function(events){
   events.preventDefault();
 
   //Hide Submit button after first click
-  var hide_button = document.getElementById('topic_form');
+  var hide_button = document.getElementById('topic_form'), topic_zone = document.getElementById('topic_zone');
   hide_button.innerHTML = '<input id="after_submit" type="text" name="topic" value="' + hide_button.topic.value + '" placeholder="หัวข้อในการตัดสินใจ">'
 
-  document.getElementById('topic_zone').style.cssText = 'top: 87px;';
+  topic_zone.style.cssText = 'top: 87px;';
   setTimeout(function() {
-    document.getElementById("topic_zone").classList.remove('before_submit');
+    topic_zone.classList.remove('before_submit');
     add_choice_form();
   }, 400);
 }
 
 //Loading Page
 function loading(time){
-  var loading = document.getElementsByClassName("loading_spinner");
-  document.getElementById("loading").style.display = "block";
+  var loading = document.getElementById("loading");
 
-  fadein(document.getElementById("loading")); //Fade in loader
-  setTimeout(function() {fadeout(document.getElementById("loading"));}, time-500); //Fade out before show content 0.5s (transition times)
+  fadein(loading); //Fade in loader
+  loading.style.display = "block";
+  setTimeout(function() {fadeout(loading);}, time-500); //Fade out before show content 0.5s (transition times)
 
   setTimeout(function() {
+    loading.style.display = "none";
     document.getElementById("contentid").classList.remove('content_beforeloading');
-    document.getElementById("loading").style.display = "none";
   }, time);
 }
 //Go to top when click Center button
@@ -48,8 +48,9 @@ function fadeout(element){
 
 //ALL INPUT FORM
 function choice_input_form(i, choiceName=""){
-  all_form = '<input type="text" name="choiceName'+ i +'" value="' + choiceName + '" class="choice_input" placeholder="ทางเลือก" autocomplete="off">';
-  all_form += '<button type="submit" onclick="remove_choice_form(' + (i) + ')">ลบ</button><br>';
+  all_form = '<div class="choice_form"><input type="text" name="choiceName'+ i +'" value="' + choiceName + '" class="choice_input" placeholder="ทางเลือก" autocomplete="off">';
+  all_form += '<button type="submit" onclick="remove_choice_form(' + (i) + ')">ลบ</button><br></div>';
+
   return all_form;
 }
 function benefit_input_form(i, j, banefit_var="", isnewblock=false){
@@ -65,7 +66,7 @@ function disadvantage_input_form(i, j, disadvantage_var="", isnewblock=false){
   all_form += '<button id="disadvantageremove" type="submit" onclick="remove_disadvantage_form(' + (i) + ', ' + (j) + ')">ลบ</button>';
 
   if (isnewblock)
-    all_form = '<div id="addbedis_form" class="addbedis_form">' + all_form + '</div>';
+    all_form = '<div id="addbedis_form" class="addbedis_form">' + all_form + '</div>'
   return all_form;
 }
 function add_benefit_button(i){
@@ -75,12 +76,46 @@ function add_disadvantage_button(i){
   return '<button type="submit" onclick="add_disadvantage_form(' + (i) + ')">เพิ่มความเสี่ยง/ข้อเสีย</button><br>';
 }
 function add_choice_button(){
-  addform = '<div class="bottom_button"><button id="add_choice" onclick="add_choice_form()" name="addchoice">เพิ่มทางเลือก</button>';
+  addform = '<button id="add_choice" onclick="add_choice_form()" name="addchoice">เพิ่มทางเลือก</button>';
   addform += '<button id="center_choice" onclick="gototop()"><i class="fa fa-angle-double-up"></i></button>';
-  addform += '<button id="make_choice" onclick="makeupchoice()" name="submit">ตัดสินใจ</button><div>';
+  if (is_before_bedis){
+    addform += '<button id="make_choice" onclick="addbenefit()" name="submit">เพิ่มข้อดี/ข้อเสีย</button></div>';
+  }else{
+    addform += '<button id="make_choice" onclick="makeupchoice()" name="submit">ตัดสินใจ</button>';
+  }
   return addform;
 }
 
+//Before Denefit/Disadventage
+function addbenefit(){
+  is_before_bedis = false;
+
+  var showform = document.getElementById('choice_form');
+  fadeout(showform);
+  var all_form = ""
+
+  var choice_data = document.getElementsByClassName('choice_input');
+  for (i=0; i<choice_count; i++){
+      all_form += choice_input_form(i, choice_data[i].value);
+
+      //Benefit form
+      all_form += '<div class="bedis_form"><div class="benefit_form"><h3>ข้อดี/ผลประโยชน์</h3>';
+      var benefit_data = document.getElementsByClassName('benefit_input' + i);
+      for (j=0; j<benefit_data_count[i]; j++)
+        all_form += benefit_input_form(i, j, banefit_var=benefit_data[j].value);
+      all_form += add_benefit_button(i) + '</div>';
+
+      //disadvantage Form
+      all_form += '<div class="disadvantage_form"><h3>ข้อเสีย/ความเสี่ยง</h3>';
+      var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i);
+      for (j=0; j<disadvantage_data_count[i]; j++)
+          all_form += disadvantage_input_form(i, j, disadvantage_var=disadvantage_data[j].value);
+      all_form += add_disadvantage_button(i) + '</div></div>';
+  }
+  all_form += add_choice_button();
+
+  setTimeout(function() {showform.innerHTML = all_form; fadein(showform);}, 500);
+}
 
 function add_benefit_form(choiceindex){ //add benefit form
   benefit_data_count[choiceindex] += 1;
@@ -112,9 +147,7 @@ function add_benefit_form(choiceindex){ //add benefit form
   all_form += add_choice_button();
 
   showform.innerHTML = all_form; //Show in choice_form
-  setTimeout(function() {
-    document.getElementById("addbedis_form").classList.remove('addbedis_form'); //Remove Class for fade in animation
-  }, 10);
+  setTimeout(function() {document.getElementById("addbedis_form").classList.remove('addbedis_form');}, 1); //Remove Class for fade in animation
 }
 
 function add_disadvantage_form(choiceindex){ //add disadvantage form
@@ -147,9 +180,7 @@ function add_disadvantage_form(choiceindex){ //add disadvantage form
   all_form += add_choice_button();
 
   showform.innerHTML = all_form; //Show in choice_form
-  setTimeout(function() {
-    document.getElementById("addbedis_form").classList.remove('addbedis_form'); //Remove Class for fade in animation
-  }, 10);
+  setTimeout(function() {document.getElementById("addbedis_form").classList.remove('addbedis_form');}, 1); //Remove Class for fade in animation
 }
 
 function remove_benefit_form(remove_i, remove_j){
@@ -252,9 +283,12 @@ function add_choice_form(){ //Add Choice input +1 form
   all_form += add_choice_button() + '</div>';
 
   showform.innerHTML = all_form; //Show in choice_form
-  setTimeout(function() {
-    document.getElementById("addchoice_form").classList.remove('addchoice_form'); //Remove Class for fade in animation
-  }, 10);
+  if (is_before_bedis){
+    var bedis_form = document.getElementsByClassName('bedis_form');
+    for (i=0; i<choice_count; i++)
+      bedis_form[i].style.display = "none"; //Hide Button Before type benefit/disadvantage
+  }
+  setTimeout(function() {document.getElementById("addchoice_form").classList.remove('addchoice_form'); }, 100); //Remove Class for fade in animation
 }
 
 function remove_choice_form(choiceindex){
@@ -267,7 +301,7 @@ function remove_choice_form(choiceindex){
     return;
   }swal({
     title: "แน่ใจหรือปล่าว?",
-    text: "ถ้าหากกดลบไปผลดี/ผลเสียของตัวเลือกนั้นก็จะหายไปด้วยนะ",
+    text: "ต้องการจะลบทางเลือกของคุณ ใช่หรือไม่",
     type: "warning",
     showCancelButton: true,
     confirmButtonClass: "btn-danger",
@@ -308,6 +342,11 @@ function remove_choice_form(choiceindex){
     all_form += add_choice_button();
 
     showform.innerHTML = all_form; //Show in choice_form
+    if (is_before_bedis){
+      var bedis_form = document.getElementsByClassName('bedis_form');
+      for (i=0; i<choice_count; i++)
+        bedis_form[i].style.display = "none"; //Hide Button Before type benefit/disadvantage
+    }
   });
 }
 
@@ -318,6 +357,7 @@ function makeupchoice(){
   var bedis_ratio = [], benefit_length = [], disadvantage_length = [], choice_array = [];
 
   var choice_data = document.getElementsByClassName('choice_input');
+  //Calculate ratio to find the best choice
   for (i=0; i<choice_count; i++){
     choice_array[i] = choice_data[i].value;
 
@@ -334,12 +374,15 @@ function makeupchoice(){
       disadvantage_length[i] += disadvantage_data[j].value.length;
     }
 
-    if (disadvantage_length[i] != 0){
+    // Calculate ratio
+    if (disadvantage_length[i] != 0 && benefit_length[i] != 0){
       bedis_ratio[i] = (benefit_data_count[i]/disadvantage_data_count[i]) * (benefit_length[i]/disadvantage_length[i]);
     }else if (disadvantage_length[i] == 0){
-      bedis_ratio[i] = (benefit_data_count[i]/disadvantage_data_count[i]) * benefit_length[i];
+      bedis_ratio[i] = benefit_data_count[i] * benefit_length[i];
+    }else if (benefit_length[i] == 0){
+      bedis_ratio[i] = (1/disadvantage_data_count[i]) * (1/disadvantage_length[i]);
     }else{
-      bedis_ratio[i] = benefit_data_count[i] * (benefit_length[i]/disadvantage_length[i]);
+      bedis_ratio[i] = 0;
     }
   }
 
@@ -392,17 +435,17 @@ function makeupchoice(){
 
   //MakeYourMind Animation
   //Fade out
-  document.getElementById("contentid").style.opacity = 0;
-  document.getElementById("contentid").style.transition = "0.3s";
-  setTimeout(function() {
-    document.getElementById("contentid").style.display = "none";
+  content = document.getElementById("contentid");
+  content.style.opacity = 0; //Fade out content
+  setTimeout(function() { //loading and remove content with display
     loading(2000);
+    content.style.display = "none";
   }, 300);
 
   fadeout(showoutput); //Hide Result for show animation
   setTimeout(function() {
     showoutput.innerHTML = result_output + show_table(bedis_ratio);
-    fadein(showoutput); //Show Resulr
+    fadein(showoutput); //Show Result
   }, 2300);
 
   //2 ปุ่มสุดท้ายคือปุ่มแก้ กับรีเฟรชหน้าใหม่ (มี center เหมือนเดิม)
@@ -410,12 +453,12 @@ function makeupchoice(){
 
   //Fade In
   /*setTimeout(function() {
-    document.getElementById("contentid").style.opacity = 1;
-    document.getElementById("contentid").style.display = "block";
+    content.style.opacity = 1;
+    content.style.display = "block";
   }, 500);*/
 }
 
-function show_table(bedis_ratio){
+function show_table(bedis_ratio){ //Result Table
   var result_output = '<h2 style="font-size: 42px; font-family: kanit_bold;">ทางเลือกทั้งหมดจาก ' + document.getElementById('topic_form').topic.value  + '</h2><br><center><table>';
 
   var choice_data = document.getElementsByClassName('choice_input');

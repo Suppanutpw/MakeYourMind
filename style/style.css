@@ -295,6 +295,9 @@ button{
   cursor: pointer;
   background-color: rgba(240, 240, 240, 0.15);
 }
+.choice_form{
+  margin-bottom: 15px;
+}
 
 /*Benefit and disadvantage*/
 .bedis_form{
@@ -322,6 +325,7 @@ button{
   width: 48%;
   float: left;
   padding: 15px;
+  padding-top: 0px;
   box-sizing: border-box;
 }
 .benefit_form h3{
@@ -368,6 +372,7 @@ button{
   margin-left: 4%;
   float: left;
   padding: 15px;
+  padding-top: 0px;
   box-sizing: border-box;
 }
 .disadvantage_form h3{
@@ -463,11 +468,11 @@ button{
 
 /*Transtition Animation*/
 /*Fade in choice*/
-#addchoice_form{
-  transition: all 1s;
-}
 .addchoice_form{
   opacity: 0;
+}
+#addchoice_form{
+  transition: all 1s;
 }
 
 /*Fade in benefit and disadvantage*/
@@ -482,7 +487,7 @@ button{
   opacity: 0;
 }
 #contentid{
-  transition: all 1s;
+  transition: 0.5s;
 }
 /*Loading Style*/
 .loading_spinner{

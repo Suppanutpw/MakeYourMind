@@ -86,15 +86,15 @@ table{
   border-collapse: collapse;
   border-top: 2px solid #f0f0f0;
   border-bottom: 2px solid #f0f0f0;
-  box-shadow: 0px 0px 10px;
-}
-th{
-  font-family: kanit_bold;
-  padding: 15px 20px;
 }
 td{
   font-family: kanit_regular;
   padding: 15px 20px;
+}
+input{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 input[type="text"]{
   display: block;
@@ -110,8 +110,6 @@ input[type="submit"]{
   outline: none;
   font-family: kanit_bold;
   box-sizing: border-box;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
 }
 textarea{
   display: block;
@@ -130,51 +128,62 @@ button{
   box-sizing: border-box;
 }
 .topic_row{
-  font-size: 42px;
-  font-family: kanit_regular;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0);
   border-left: 2px solid #f0f0f0;
   border-right: 2px solid #f0f0f0;
+  font-size: 36px;
+  font-family: kanit_regular;
+  padding: 20px 24px;
 }
 .benefit_topic_col{
-  font-size: 28px;
-  background-color: #275563;
+  background-color: #066C96;
   border-left: 2px solid #f0f0f0;
+  font-size: 28px;
+  font-family: kanit_regular;
+  padding: 20px 24px;
 }
 .disadvantage_topic_col{
-  font-size: 28px;
-  background-color: #763926;
+  background-color: #963006;
   border-right: 2px solid #f0f0f0;
+  font-size: 28px;
+  font-family: kanit_regular;
+  padding: 20px 24px;
 }
 .benefit_col{
-  font-size: 20px;
+  font-size: 22px;
   text-align: center;
   vertical-align: top;
   width: 50%;
-  background-color: #367588;
+  color: #066C96;
+  background-color: #85D6F7;
   border-left: 2px solid #f0f0f0;
 }
 .benefit_col span{
   text-align: center;
   display: block;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   padding: 0px 12px;
-  border-left: 3px solid #224955;
+  border-left: 3px solid #066C96;
 }
 .disadvantage_col{
-  font-size: 18px;
+  font-size: 22px;
   text-align: center;
   vertical-align: top;
   width: 50%;
-  background-color: #884936;
+  color: #963006;
+  background-color: #F7A685;
   border-right: 2px solid #f0f0f0;
 }
 .disadvantage_col span{
   text-align: center;
   display: block;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   padding: 0px 12px;
-  border-right: 3px solid #552E22;
+  border-right: 3px solid #963006;
+}
+.no_data{
+  font-size: 24px;
+  vertical-align: middle;
 }
 
 .content{
@@ -499,7 +508,7 @@ button{
   height: 50px;
   background-color: #F0F0F0;
 
-  position: absolute;
+  position: fixed;
   top: 30%;
   left: 50%;
   transform: translate(-50%, -30%);

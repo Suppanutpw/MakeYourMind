@@ -8,6 +8,10 @@ var disadvantage_data_count = [];
 topic_form.onsubmit = function(events){ //When Form onsubmit
   events.preventDefault();
 
+  console.log(checktype());
+
+  if (!checktype()) {return;} //check form is not null
+
   //Hide Submit button after first click
   var hide_button = document.getElementById('topic_form'), topic_zone = document.getElementById('topic_zone');
   hide_button.innerHTML = '<input id="after_submit" type="text" name="topic" value="' + hide_button.topic.value + '" placeholder="หัวข้อในการตัดสินใจ">'
@@ -95,13 +99,45 @@ function retry_button(){
   return addform;
 }
 
+//Check for null form
+function checktype(){
+  var checktype = true;
+
+  if (document.getElementById('topic_form').topic.value == "") //check topic
+    checktype = false;
+
+  var choice_data = document.getElementsByClassName('choice_input');
+  for (i=0; i<choice_count&&checktype; i++){
+      if (choice_data[i].value == "")
+        checktype = false;
+
+      //Benefit form
+      var benefit_data = document.getElementsByClassName('benefit_input' + i);
+      for (j=0; j<benefit_data_count[i]; j++)
+        if (benefit_data[j].value == "")
+          checktype = false;
+
+      //disadvantage Form
+      var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i);
+      for (j=0; j<disadvantage_data_count[i]; j++)
+        if (disadvantage_data[j].value == "")
+          checktype = false;
+  }
+
+  if (!checktype)
+    swal({title: "คำเตือน", text: "กรุณากรอกข้อมูลให้ครบถ้วน", type: "warning",});
+  return checktype;
+}
+
 //Before Denefit/Disadventage
 function addbenefit(){
+  if (!checktype()) {return;} //check form is not null
+
   is_before_bedis = false;
 
   var showform = document.getElementById('choice_form');
   fadeout(showform);
-  var all_form = ""
+  var all_form = "";
 
   var choice_data = document.getElementsByClassName('choice_input');
   for (i=0; i<choice_count; i++){
@@ -360,6 +396,8 @@ function remove_choice_form(choiceindex){
 }
 
 function makeupchoice(){
+  if (!checktype()) {return;} //check form is not null
+
   result_output = '<center><h1>Make<span style="color: #F16645;">Your</span>Mind</h1>';
 
   var showoutput = document.getElementById('result');
@@ -482,28 +520,34 @@ function reform(){
 }
 
 function show_table(bedis_ratio){ //Result Table
-  var result_output = '<h2 style="font-size: 42px; font-family: kanit_bold;">ทางเลือกทั้งหมดจาก ' + document.getElementById('topic_form').topic.value  + '</h2><br><center><table>';
+  var result_output = '<h2 style="font-size: 42px; font-family: kanit_regular;">ทางเลือกทั้งหมดจาก ' + document.getElementById('topic_form').topic.value  + '</h2><br><center><table>';
 
   var choice_data = document.getElementsByClassName('choice_input');
   for (i=0; i<choice_count; i++){
-    if (bedis_ratio[i] == 0)
-      continue;
-    result_output += '<tr class="topic_row"><th colspan="2">--- ' + choice_data[i].value + ' ---</th></tr>'; //Topic Name Row
+    result_output += '<tr><th class="topic_row" colspan="2">--- ' + choice_data[i].value + ' ---</th></tr>'; //Topic Name Row
     result_output += '<tr><th class="benefit_topic_col">ข้อดี/ผลประโยชน์</th><th class="disadvantage_topic_col">ข้อเสีย/ความเสี่ยง</th></tr>'; //Benefit and Disadventage Topic Row
 
     //Benefit form
-    result_output += '<tr><td class="benefit_col">';
-    var benefit_data = document.getElementsByClassName('benefit_input' + i);
-    for (j=0; j<benefit_data_count[i]; j++)
-      result_output += '<span>' + benefit_data[j].value + '</span>';
-    result_output += '</td>';
+    if (benefit_data_count[i] != 0){
+      result_output += '<tr><td class="benefit_col">';
+      var benefit_data = document.getElementsByClassName('benefit_input' + i);
+      for (j=0; j<benefit_data_count[i]; j++)
+        result_output += '<span>' + benefit_data[j].value + '</span>';
+      result_output += '</td>';
+    }else{
+      result_output += '<tr><td class="benefit_col no_data">ไม่มี</td>';
+    }
 
     //disadvantage form
-    result_output += '<td class="disadvantage_col">';
-    var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i);
-    for (j=0; j<disadvantage_data_count[i]; j++)
-      result_output += '<span>' + disadvantage_data[j].value + '</span>';
-    result_output += '</td></tr>';
+    if (disadvantage_data_count[i] != 0){
+      result_output += '<td class="disadvantage_col">';
+      var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i);
+      for (j=0; j<disadvantage_data_count[i]; j++)
+        result_output += '<span>' + disadvantage_data[j].value + '</span>';
+      result_output += '</td></tr>';
+    }else{
+      result_output += '<td class="disadvantage_col no_data">ไม่มี</td></tr>';
+    }
   }
 
   return result_output + '</table>' + retry_button();

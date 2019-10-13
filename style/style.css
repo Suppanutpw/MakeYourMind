@@ -124,6 +124,9 @@ button{
   display: inline-block;
   box-sizing: border-box;
 }
+span{
+  word-break: break-all;
+}
 
 /*important for fade in/out animation*/
 .show{

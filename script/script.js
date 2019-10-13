@@ -20,6 +20,8 @@ topic_form.onsubmit = function(events){ //When Form onsubmit
   setTimeout(function() {
     topic_zone.classList.remove('before_submit');
     add_choice_form();
+    fadein(document.getElementById('makemind_step'));
+    setTimeout(function() {progress(1);}, 500);
   }, 400);
 }
 
@@ -52,6 +54,16 @@ function fadeout(element){
   element.classList.remove("show");
 }
 
+//progressbar
+function progress(steps){
+  for (i=0; i<4; i++){
+    if (i < steps)
+      document.getElementById('step' + (i+1)).classList.add('active');
+    else
+      document.getElementById('step' + (i+1)).classList.remove('active');
+  }
+}
+
 //ALL INPUT FORM
 function choice_input_form(i, choiceName=""){
   all_form = '<div class="choice_form"><input type="text" name="choiceName'+ i +'" value="' + choiceName + '" class="choice_input" placeholder="ทางเลือก" autocomplete="off">';
@@ -61,7 +73,7 @@ function choice_input_form(i, choiceName=""){
 }
 function benefit_input_form(i, j, banefit_var="", isnewblock=false){
   all_form = '<textarea name="benefitData'+ (i) + (j) +'" class="benefit_input' + (i) + '" placeholder="ข้อดี/ประโยชน์ที่ได้รับ">' + banefit_var + '</textarea>';
-  all_form += '<button id="benefitremove" type="submit" onclick="remove_benefit_form(' + (i) + ', ' + (j) + ')">ลบ</button>';
+  all_form += '<button id="benefitremove" type="submit" onclick="remove_benefit_form(' + (i) + ', ' + (j) + ')"><i class="fa fa-times"></i></button>';
 
   if (isnewblock)
     all_form = '<div id="addbedis_form" class="addbedis_form">' + all_form + '</div>';
@@ -69,7 +81,7 @@ function benefit_input_form(i, j, banefit_var="", isnewblock=false){
 }
 function disadvantage_input_form(i, j, disadvantage_var="", isnewblock=false){
   all_form = '<textarea name="disadvantage_Data'+ (i) + (j) +'" class="disadvantage_input' + (i) + '" placeholder="ข้อเสีย/ความเสี่ยงที่จะเกิด">' + disadvantage_var + '</textarea>';
-  all_form += '<button id="disadvantageremove" type="submit" onclick="remove_disadvantage_form(' + (i) + ', ' + (j) + ')">ลบ</button>';
+  all_form += '<button id="disadvantageremove" type="submit" onclick="remove_disadvantage_form(' + (i) + ', ' + (j) + ')"><i class="fa fa-times"></i></button>';
 
   if (isnewblock)
     all_form = '<div id="addbedis_form" class="addbedis_form">' + all_form + '</div>'
@@ -85,7 +97,7 @@ function add_choice_button(){
   addform = '<button id="add_choice" onclick="add_choice_form()" name="addchoice">เพิ่มทางเลือก</button>';
   addform += '<button id="center_choice" onclick="gototop()"><i class="fa fa-angle-double-up"></i></button>';
   if (is_before_bedis){
-    addform += '<button id="make_choice" onclick="addbenefit()" name="submit">เพิ่มข้อดี/ข้อเสีย</button>';
+    addform += '<button id="make_choice" onclick="addbenefit()" name="submit">กำหนดขอบเขต</button>';
   }else{
     addform += '<button id="make_choice" onclick="makeupchoice()" name="submit">ตัดสินใจ</button>';
   }
@@ -159,7 +171,7 @@ function addbenefit(){
   }
   all_form += add_choice_button();
 
-  setTimeout(function() {showform.innerHTML = all_form; fadein(showform);}, 500);
+  setTimeout(function() {showform.innerHTML = all_form; fadein(showform); progress(2);}, 500);
 }
 
 function add_benefit_form(choiceindex){ //add benefit form
@@ -505,6 +517,7 @@ function reform(){
   showoutput = document.getElementById('result'); //Table Result
   content = document.getElementById("contentid");
 
+  progress(1); //Re Animation step 3s
   fadeout(showoutput); //Show Result
   setTimeout(function() { //loading and remove content with display
     showoutput.style.display = "none"; //Remove block after fadeout
@@ -516,6 +529,7 @@ function reform(){
   fadeout(content);
   setTimeout(function() { //loading and remove content with display
     fadein(content);
+    setTimeout(function() {progress(2);}, 400);
   }, 2800);
 }
 
@@ -524,7 +538,7 @@ function show_table(bedis_ratio){ //Result Table
 
   var choice_data = document.getElementsByClassName('choice_input');
   for (i=0; i<choice_count; i++){
-    result_output += '<tr><th class="topic_row" colspan="2">--- ' + choice_data[i].value + ' ---</th></tr>'; //Topic Name Row
+    result_output += '<tr><th class="topic_row" colspan="2">' + choice_data[i].value + '</th></tr>'; //Topic Name Row
     result_output += '<tr><th class="benefit_topic_col">ข้อดี/ผลประโยชน์</th><th class="disadvantage_topic_col">ข้อเสีย/ความเสี่ยง</th></tr>'; //Benefit and Disadventage Topic Row
 
     //Benefit form

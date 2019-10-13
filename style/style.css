@@ -63,6 +63,9 @@
   border-color: #357ebd;
 }
 
+html{
+  word-break: break-all;
+}
 body{
   font-family: kanit_regular;
   background-color: #050505;
@@ -123,9 +126,6 @@ button{
   border-radius: 5px;
   display: inline-block;
   box-sizing: border-box;
-}
-span{
-  word-break: break-all;
 }
 
 /*important for fade in/out animation*/

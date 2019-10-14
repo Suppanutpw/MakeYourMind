@@ -144,7 +144,7 @@ function checktype(){
   }
 
   if (!checktype)
-    alert('คำเตือน!!!\nกรุณากรอกข้อมูลให้ครบถ้วน');
+    swal({title: "คำเตือน", text: "กรุณากรอกข้อมูลให้ครบถ้วน", type: "warning",});
   return checktype;
 }
 
@@ -357,48 +357,61 @@ function add_choice_form(){ //Add Choice input +1 form
 
 function remove_choice_form(choiceindex){
   if (choice_count == 1){
-    alert('คำเตือน!!!\nคุณไม่สามารถลบทางเลือกทั้งหมดได้');
+    swal({
+      title: "คำเตือน",
+      text: "คุณไม่สามารถลบทางเลือกทั้งหมดได้",
+      type: "warning",
+    });
     return;
-  }else if (!confirm("แน่ใจหรือปล่าว?\nต้องการจะลบทางเลือกของคุณใช่หรือไม่")) {
-    return;
-  }
-  var showform = document.getElementById('choice_form');
-  var all_form = "";
+  }swal({
+    title: "แน่ใจหรือปล่าว?",
+    text: "ต้องการจะลบทางเลือกของคุณ ใช่หรือไม่",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonClass: "btn-danger",
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Comfirm",
+    closeOnConfirm: true
+  },
+  function(){
+    var showform = document.getElementById('choice_form');
+    var all_form = "";
 
-  var choice_data = document.getElementsByClassName('choice_input'), movetoleft = false;
-  for (i=0; i<choice_count; i++){ //Keep old Data
-    if (i != choiceindex){
-      all_form += choice_input_form(i-movetoleft, choice_data[i].value);
+    var choice_data = document.getElementsByClassName('choice_input'), movetoleft = false;
+    for (i=0; i<choice_count; i++){ //Keep old Data
+      if (i != choiceindex){
+        all_form += choice_input_form(i-movetoleft, choice_data[i].value);
 
-      //Benefit form
-      all_form += '<div class="bedis_form"><div class="benefit_form"><h3>ข้อดี/ผลประโยชน์</h3>';
-      var benefit_data = document.getElementsByClassName('benefit_input' + i);
-      for (j=0; j<benefit_data_count[i]; j++)
-        all_form += benefit_input_form(i-movetoleft, j, banefit_var=benefit_data[j].value);
-      all_form += add_benefit_button(i-movetoleft) + '</div>';
+        //Benefit form
+        all_form += '<div class="bedis_form"><div class="benefit_form"><h3>ข้อดี/ผลประโยชน์</h3>';
+        var benefit_data = document.getElementsByClassName('benefit_input' + i);
+        for (j=0; j<benefit_data_count[i]; j++)
+          all_form += benefit_input_form(i-movetoleft, j, banefit_var=benefit_data[j].value);
+        all_form += add_benefit_button(i-movetoleft) + '</div>';
 
-      //disadvantage Form
-      all_form += '<div class="disadvantage_form"><h3>ข้อเสีย/ความเสี่ยง</h3>';
-      var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i);
-      for (j=0; j<disadvantage_data_count[i]; j++)
-          all_form += disadvantage_input_form(i-movetoleft, j, disadvantage_var=disadvantage_data[j].value);
-      all_form += add_disadvantage_button(i-movetoleft) + '</div></div>';
+        //disadvantage Form
+        all_form += '<div class="disadvantage_form"><h3>ข้อเสีย/ความเสี่ยง</h3>';
+        var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i);
+        for (j=0; j<disadvantage_data_count[i]; j++)
+            all_form += disadvantage_input_form(i-movetoleft, j, disadvantage_var=disadvantage_data[j].value);
+        all_form += add_disadvantage_button(i-movetoleft) + '</div></div>';
 
-      benefit_data_count[i-movetoleft] = benefit_data_count[i];
-      disadvantage_data_count[i-movetoleft] = disadvantage_data_count[i];
-    }else {
-      movetoleft = true;
+        benefit_data_count[i-movetoleft] = benefit_data_count[i];
+        disadvantage_data_count[i-movetoleft] = disadvantage_data_count[i];
+      }else {
+        movetoleft = true;
+      }
     }
-  }
-  choice_count -= 1;
-  all_form += add_choice_button();
+    choice_count -= 1;
+    all_form += add_choice_button();
 
-  showform.innerHTML = all_form; //Show in choice_form
-  if (is_before_bedis){
-    var bedis_form = document.getElementsByClassName('bedis_form');
-    for (i=0; i<choice_count; i++)
-      bedis_form[i].style.display = "none"; //Hide Button Before type benefit/disadvantage
-  }
+    showform.innerHTML = all_form; //Show in choice_form
+    if (is_before_bedis){
+      var bedis_form = document.getElementsByClassName('bedis_form');
+      for (i=0; i<choice_count; i++)
+        bedis_form[i].style.display = "none"; //Hide Button Before type benefit/disadvantage
+    }
+  });
 }
 
 function makeupchoice(){
@@ -467,8 +480,12 @@ function makeupchoice(){
   }
 
   if (choice_array[pos[0]] == undefined || ratio_max == 0 || ratio_max == NaN){
-    alert('คำเตือน!!!\nกรุณาใส่ข้อมูลในทางเลือกอย่างน้อย 1 ข้อ');
-    return;
+    swal({
+      title: "คำเตือน",
+      text: "กรุณาใส่ข้อมูลในทางเลือกอย่างน้อย 1 ข้อ",
+      type: "warning",
+    });
+    return 0;
   }if (max_count != 0){
     result_output += '<h2>ฉันลังเลระหว่าง <span style="font-family: kanit_regular;font-size: 46px;">';
     for (i=0; i<max_count; i++){

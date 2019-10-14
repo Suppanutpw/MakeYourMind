@@ -12,8 +12,12 @@
     src: url('./font/Kanit-Regular.ttf');
 }
 @font-face {
+    font-family: kanit_medium;
+    src: url('./font/Kanit-Medium.ttf');
+}
+@font-face {
     font-family: kanit_semibold;
-    src: url('./font/Kanit-SemiBold.ttf.ttf');
+    src: url('./font/Kanit-SemiBold.ttf');
 }
 @font-face {
     font-family: kanit_bold;
@@ -166,14 +170,14 @@ button{
   background-color: #3E8AC0;
   border-left: 2px solid #f0f0f0;
   font-size: 28px;
-  font-family: kanit_regular;
+  font-family: kanit_medium;
   padding: 20px 24px;
 }
 .disadvantage_topic_col{
   background-color: #B63D44;
   border-right: 2px solid #f0f0f0;
   font-size: 28px;
-  font-family: kanit_regular;
+  font-family: kanit_medium;
   padding: 20px 24px;
 }
 .benefit_col{

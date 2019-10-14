@@ -50,7 +50,7 @@
 }
 .btn-lg, .btn-group-lg>.btn{
   padding: 14px 24px;
-  font-size: 18px;
+  font-size: calc(10px + 0.64vw);
   line-height: 1.33;
   border-radius: 6px;
 }
@@ -61,7 +61,7 @@
 }
 .btn-primary{ /*button in warning*/
   color: #fff;
-  font-size: 16px;
+  font-size: calc(10px + 0.48vw);
   font-family: kanit_bold;
   background-color: #428bca;
   border-color: #357ebd;
@@ -104,9 +104,8 @@ input[type="text"]{
   display: block;
   border: none;
   outline: none;
-  padding: 14px 16px;
   padding-left: 25px;
-  font-size: 20px;
+  font-size: calc(6px + 1.3vw);
   font-family: kanit_regular;
   box-sizing: border-box;
 }
@@ -135,21 +134,21 @@ button{
 
 .content h1{
   color: #F0F0F0;
-  font-size: 64px;
+  font-size: calc(10px + 4.88vw);
   font-family: kanit_light;
   margin: 0;
 }
 .content h2{
   color: #F0F0F0;
   text-align: center;
-  font-size: 48px;
+  font-size: calc(10px + 3.24vw);
   font-family: kanit_light;
   margin: 0;
 }
 .content h3{
   color: #F0F0F0;
   text-align: center;
-  font-size: 36px;
+  font-size: calc(8px + 2.24vw);
   font-family: kanit_light;
   margin: 0;
   margin-bottom: 25px;
@@ -157,7 +156,7 @@ button{
 .content h4{
   color: #F0F0F0;
   text-align: center;
-  font-size: 28px;
+  font-size: calc(5px + 1.74vw);
   font-family: kanit_light;
   margin: 0;
   margin-bottom: 25px;
@@ -189,30 +188,22 @@ button{
   z-index: -999;
 }
 
-.topic_row{
-  background-color: rgba(0, 0, 0, 0);
-  border-left: 2px solid #f0f0f0;
-  border-right: 2px solid #f0f0f0;
-  font-size: 36px;
-  font-family: kanit_regular;
-  padding: 20px 24px;
-}
 .benefit_topic_col{
   background-color: #3E8AC0;
   border-left: 2px solid #f0f0f0;
-  font-size: 28px;
+  font-size: calc(5px + 1.74vw);
   font-family: kanit_medium;
   padding: 20px 24px;
 }
 .disadvantage_topic_col{
   background-color: #B63D44;
   border-right: 2px solid #f0f0f0;
-  font-size: 28px;
+  font-size: calc(5px + 1.74vw);
   font-family: kanit_medium;
   padding: 20px 24px;
 }
 .benefit_col{
-  font-size: 22px;
+  font-size: calc(5px + 1.46vw);
   text-align: center;
   vertical-align: top;
   width: 50%;
@@ -227,7 +218,7 @@ button{
   border-left: 3px solid #3E8AC0;
 }
 .disadvantage_col{
-  font-size: 22px;
+  font-size: calc(5px + 1.46vw);
   text-align: center;
   vertical-align: top;
   width: 50%;
@@ -242,7 +233,7 @@ button{
   border-right: 3px solid #B63D44;
 }
 .no_data{
-  font-size: 24px;
+  font-size: calc(5px + 1.62vw);
   vertical-align: middle;
 }
 
@@ -260,7 +251,7 @@ button{
   text-align: center;
 }
 .topic_zone h3{
-  margin-bottom: 25px;
+  margin-bottom: 2vw;
 }
 /*Topic Zone Before Submit*/
 .before_submit{
@@ -272,27 +263,28 @@ button{
 }
 .topic_form input[type="text"]{
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
   color: #F16645;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: calc(15px + 0.4vw) calc(15px + 0.8vw);
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 1.6vw;
   transition: 0.3s;
 }
 .topic_form input[type="text"]:focus{
   background-color: rgba(255, 255, 255, 0.05);
   color: #f0f0f0;
-  padding: 13px 16px;
+  padding: calc(15px + 0.6vw) calc(15px + 1vw);
   border: 1px solid #fff;
 }
 .topic_form input[type="submit"]{
-  width: 195px;
+  width: 30%;
   background-color: rgba(241, 102, 69, 0.9);
   color: #F0F0F0;
   border: none;
-  border-radius: 5px;
+  border-radius: calc(2px + 1.24vw);
   margin: auto;
   padding: 10px 40px;
-  font-size: 20px;
+  font-size: calc(6px + 1.3vw);
   transition: 0.6s;
 }
 .topic_form input[type="submit"]:hover{
@@ -302,7 +294,7 @@ button{
 .show_result input[type="text"]{ /*For show result*/
   color: #f0f0f0;
   background-color: rgba(255, 255, 255, 0.05);
-  font-size: 24px;
+  font-size: calc(6px + 1.9vw);
   padding: 13px 16px;
   border: 1px solid #fff;
   text-align: center;
@@ -323,6 +315,7 @@ button{
 }
 .form input[type="text"]{
   width: 75%;
+  height: calc(25px + 2.24vw);
   float: left;
   margin-left: 7.5%;
   padding: 10px 12px;
@@ -341,12 +334,13 @@ button{
 }
 .form button{
   width: 10%;
+  height: calc(25px + 2.24vw);
   border-radius: 0px;
   background-color: rgba(255, 105, 97, 0.9);
   color: #F0F0F0;
   padding: 10px 12px;
   font-family: kanit_bold;
-  font-size: 20px;
+  font-size: calc(5px + 1.6vw);
   transition: 0.6s;
 }
 .form button:hover{
@@ -368,18 +362,20 @@ button{
 }
 #benefitremove{
   width: 20%;
+  height: calc(30px + 4.48vw);
   padding: 13px 12px;
   margin-left: 0px;
-  font-size: 36px;
+  font-size: calc(10px + 2.28vw);
   color: #F0F0F0;
   background-color: #5AB4BE;
   border: none;
 }
 #disadvantageremove{
   width: 20%;
+  height: calc(30px + 4.48vw);
   padding: 13px 12px;
   margin-left: 0px;
-  font-size: 36px;
+  font-size: calc(10px + 2.28vw);
   color: #F0F0F0;
   background-color: #BE645A;
   border: none;
@@ -402,13 +398,14 @@ button{
 }
 .benefit_form textarea{
   width: 80%;
+  height: calc(30px + 4.48vw);
   float: left;
   margin-bottom: 5px;
   padding: 10px 12px;
   padding-left: 25px;
   background-color: rgba(0, 0, 0, 0.6);
   color: #F0F0F0;
-  font-size: 20px;
+  font-size: calc(6px + 1.3vw);
   transition: 0.3s;
 }
 .benefit_form textarea:focus{
@@ -419,6 +416,7 @@ button{
 }
 .benefit_form button{
   width: 100%;
+  height: calc(25px + 2.64vw);
   color: #69DBE7;
   background-color: rgba(255, 255, 255, 0.05);
   border: 3px solid #5AB4BE;
@@ -449,13 +447,14 @@ button{
 }
 .disadvantage_form textarea{
   width: 80%;
+  height: calc(30px + 4.48vw);
   float: left;
   margin-bottom: 5px;
   padding: 10px 12px;
   padding-left: 25px;
   background-color: rgba(0, 0, 0, 0.6);
   color: #F0F0F0;
-  font-size: 20px;
+  font-size: calc(6px + 1.3vw);
   transition: 0.3s;
 }
 .disadvantage_form textarea:focus{
@@ -466,6 +465,7 @@ button{
 }
 .disadvantage_form button{
   width: 100%;
+  height: calc(25px + 2.64vw);
   color: #F38073;
   background-color: rgba(255, 255, 255, 0.05);
   border: 3px solid #F38073;
@@ -479,7 +479,7 @@ button{
 }
 .best_result{
   font-family: kanit_regular;
-  font-size: 46px;
+  font-size: calc(10px + 3.48vw);
 }
 
 /*add choice and make a choice button*/
@@ -499,6 +499,7 @@ button{
 }
 #center_choice{
   width: 8%;
+  height: auto;
   padding: 12px 16px;
   float: left;
   background-color: #35BBAD;
@@ -555,11 +556,11 @@ button{
   position: fixed;
   left: 50%;
   top: 50%;
-  margin-top: -40px;
-  margin-left: -40px;
+  margin-top: calc(-15px - 2vw);
+  margin-left: calc(-15px - 2vw);
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: calc(30px + 4vw);
+  height: calc(30px + 4vw);
 }
 .loader {
   text-indent: -9999em;
@@ -578,7 +579,7 @@ button{
 .container{
   position: relative;
   width: 100%;
-  height: 100px;
+  height: calc(30px + 5.6vw);
   margin: auto;
   background-color: rgba(255, 255, 255, 0);
 }
@@ -590,21 +591,21 @@ button{
   list-style-type: none;
   width: 25%;
   float: left;
-  font-size: 18px;
+  font-size: calc(5px + 1.04vw);
   position: relative;
   text-align: center;
   text-transform: uppercase;
   color: #f0f0f0;
 }
 .progressbar li:before {
-  width: 40px;
-  height: 40px;
+  width: calc(10px + 2.4vw);
+  height: calc(10px + 2.4vw);
   color: #2a2a2a;
   font-family: "Font Awesome 5 Free";
   content: '\f013';
   font-weight: 900;
   counter-increment: step;
-  line-height: 40px;
+  line-height: calc(10px + 2.4vw);
   display: block;
   text-align: center;
   margin: 0 auto 10px auto;
@@ -613,11 +614,11 @@ button{
 }
 .progressbar li:after {
   width: 100%;
-  height: 2px;
+  height: calc(1.5px + 0.04vw);
   content: '';
   position: absolute;
   background-color: #7d7d7d;
-  top: 20px;
+  top: calc(5px + 1vw);
   left: -50%;
   z-index: -1;
 }
@@ -637,6 +638,7 @@ button{
   transition: all 0.8s;
 }
 .progressbar li.active + li:after {
+  background-color: #90D982;
   background-image: linear-gradient(90deg, #90D982 50%, #7d7d7d 100%);
 }
 
@@ -661,30 +663,38 @@ button{
   }
 }
 
-@media only screen and (max-width: 1250px) {
-  input[type="text"]{
-    font-size: 18px;
+@media only screen and (min-width: 1550px){
+  .form button{
+    padding: 8.5px 12px;
   }
+  .topic_zone h3{
+    margin-bottom: 1vw;
+  }
+  .topic_form input[type="text"]{
+    margin-bottom: 1.2vw;
+  }
+  table{
+    width: 95%;
+  }
+  .form{
+    width: 90%;
+  }
+  .content{
+    width: 85%;
+  }
+  .topic_zone{
+    width: 50%;
+  }
+  #result{
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 1250px) {
   .form button{
     padding: 8.5px 12px;
   }
   table{
     width: 95%;
-  }
-  .content h1{
-    font-size: 60px;
-  }
-  .content h2{
-    font-size: 45px;
-  }
-  .content h3{
-    font-size: 34px;
-  }
-  .content h4{
-    font-size: 26px;
-  }
-  .best_result{
-    font-size: 44px;
   }
   .form{
     width: 95%;
@@ -717,30 +727,6 @@ button{
   }
 }
 @media screen and (max-width: 900px) {
-  .content h1{
-    font-size: 56px;
-  }
-  .content h2{
-    font-size: 42px;
-  }
-  .content h3{
-    font-size: 32px;
-  }
-  .content h4{
-    font-size: 24px;
-  }
-  .progressbar li{
-    font-size: 16px;
-  }
-  .benefit_topic_col{
-    font-size: 24px;
-  }
-  .disadvantage_topic_col{
-    font-size: 24px;
-  }
-  .best_result{
-    font-size: 42px;
-  }
   .topic_zone{
     width: 70%;
   }
@@ -749,22 +735,6 @@ button{
   }
 }
 @media screen and (max-width: 800px) {
-  .content h1{
-    font-size: 52px;
-  }
-  .content h2{
-    font-size: 36px;
-  }
-  .content h3{
-    font-size: 30px;
-  }
-  .content h4{
-    font-family: kanit_semibold;
-    font-size: 22px;
-  }
-  .best_result{
-    font-size: 38px;
-  }
   .form input[type="text"]{
     width: 80%;
     margin-left: 2.5%;
@@ -774,15 +744,12 @@ button{
   }
   #add_choice{
     width: 44%;
-    font-size: 18px;
   }
   #center_choice{
     width: 12%;
-    font-size: 18px;
   }
   #make_choice{
     width: 44%;
-    font-size: 18px;
   }
   .topic_zone{
     width: 80%;
@@ -794,11 +761,9 @@ button{
   .benefit_form button{
     width: 95%;
     margin-left: 2.5%;
-    font-size: 18px;
   }
   .benefit_form textarea{
     width: 80%;
-    font-size: 18px;
     margin-left: 2.5%;
   }
   .disadvantage_form{
@@ -808,20 +773,18 @@ button{
   .disadvantage_form button{
     width: 95%;
     margin-left: 2.5%;
-    font-size: 18px;
   }
   .disadvantage_form textarea{
     width: 80%;
-    font-size: 18px;
     margin-left: 2.5%;
   }
   #benefitremove{
     width: 15%;
-    padding: 9px 12px;
+    padding: 10px 12px;
   }
   #disadvantageremove{
     width: 15%;
-    padding: 9px 12px;
+    padding: 10px 12px;
   }
   .topic_zone{
     width: 70%;
@@ -830,78 +793,30 @@ button{
     width: 95%;
   }
   .show_result input[type="text"]{
-    font-size: 20px;
     padding: 10px 16px;
   }
 }
 @media screen and (max-width: 700px) {
-  .content h1{
-    font-size: 36px;
-  }
-  .content h2{
-    font-size: 30px;
-  }
-  .content h3{
-    font-size: 24px;
-  }
-  .benefit_form h3{
-    font-size: 28px;
-  }
-  .disadvantage_form h3{
-    font-size: 28px;
-  }
-  .content h4{
-    font-family: kanit_semibold;
-    font-size: 18px;
-  }
-  .progressbar li{
-    font-size: 14px;
-  }
-  .best_result{
-    font-size: 32px;
-  }
   .benefit_form button{
-    font-size: 16px;
     padding: 8px;
   }
   .disadvantage_form button{
-    font-size: 16px;
     padding: 8px;
   }
   .topic_form input[type="submit"]{
-    font-size: 14px;
-    width: 155px;
-    padding: 8px 20px;
+    width: 35%;
+    padding: 8px 15px;
   }
 }
 @media screen and (max-width: 600px) {
-  input[type="text"]{
-    font-size: 14px;
+  .topic_form input[type="text"]{
+    padding: 10px 20px;
+  }
+  .topic_form input[type="text"]:focus{
+    padding: 10.5px 22px;
   }
   .form button{
     padding: 5.5px 12px;
-  }
-  .content h1{
-    font-size: 33px;
-  }
-  .content h2{
-    font-size: 24px;
-  }
-  .content h3{
-    font-size: 20px;
-  }
-  .benefit_form h3{
-    font-size: 24px;
-  }
-  .disadvantage_form h3{
-    font-size: 28px;
-  }
-  .content h4{
-    font-family: kanit_semibold;
-    font-size: 14px;
-  }
-  .best_result{
-    font-size: 28px;
   }
   .form{
     width: 100%;
@@ -929,18 +844,6 @@ button{
     width: 75%;
     margin-left: 2.5%;
   }
-  .benefit_topic_col{
-    font-size: 20px;
-  }
-  .benefit_col{
-    font-size: 18px;
-  }
-  .disadvantage_topic_col{
-    font-size: 20px;
-  }
-  .disadvantage_col{
-    font-size: 18px;
-  }
   #benefitremove{
     width: 20%;
   }
@@ -948,44 +851,18 @@ button{
     width: 20%;
   }
   .show_result input[type="text"]{
-    font-size: 18px;
     padding: 10px 16px;
   }
 }
 @media screen and (max-width: 500px) {
-  .content h1{
-    font-size: 30px;
-  }
-  .content h2{
-    font-size: 22px;
-  }
-  .content h3{
-    font-size: 18px;
-  }
-  .benefit_form h3{
-    font-size: 22px;
-  }
-  .disadvantage_form h3{
-    font-size: 22px;
-  }
-  .content h4{
-    font-family: kanit_semibold;
-    font-size: 12px;
-  }
-  .best_result{
-    font-size: 24px;
-  }
   #add_choice{
-    font-size: 12px;
     padding: 8px;
     width: 42.5%;
   }
   #center_choice{
-    font-size: 12px;
     width: 15%;
   }
   #make_choice{
-    font-size: 12px;
     padding: 8px;
     width: 42.5%;
   }
@@ -994,39 +871,12 @@ button{
   }
 }
 @media screen and (max-width: 400px) {
-  .content h1{
-    font-size: 28px;
-  }
-  .content h2{
-    font-size: 20px;
-  }
-  .content h3{
-    font-size: 14px;
-  }
-  .benefit_form h3{
-    font-size: 20px;
-  }
-  .disadvantage_form h3{
-    font-size: 20px;
-  }
-  .content h4{
-    font-family: kanit_semibold;
-    font-size: 10px;
-  }
-  .progressbar li{
-    font-size: 12px;
-  }
-  .best_result{
-    font-size: 22px;
-  }
   .benefit_form textarea{
     width: 70%;
-    font-size: 16px;
     margin-left: 2.5%;
   }
   .disadvantage_form textarea{
     width: 70%;
-    font-size: 16px;
     margin-left: 2.5%;
   }
   #benefitremove{
@@ -1037,20 +887,7 @@ button{
     width: 25%;
     padding: 7px 12px;
   }
-  .benefit_topic_col{
-    font-size: 18px;
-  }
-  .benefit_col{
-    font-size: 16px;
-  }
-  .disadvantage_topic_col{
-    font-size: 18px;
-  }
-  .disadvantage_col{
-    font-size: 16px;
-  }
   .show_result input[type="text"]{
-    font-size: 16px;
     padding: 10px 16px;
   }
 }

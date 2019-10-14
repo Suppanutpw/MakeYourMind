@@ -14,7 +14,7 @@ topic_form.onsubmit = function(events){ //When Form onsubmit
   var hide_button = document.getElementById('topic_form'), topic_zone = document.getElementById('topic_zone');
   hide_button.innerHTML = '<input id="after_submit" type="text" name="topic" value="' + hide_button.topic.value + '" placeholder="หัวข้อในการตัดสินใจ">'
 
-  topic_zone.style.cssText = 'top: 128px;';
+  topic_zone.style.cssText = 'top: calc(76px + 4.21vw);';
   setTimeout(function() {
     topic_zone.classList.remove('before_submit');
     add_choice_form();

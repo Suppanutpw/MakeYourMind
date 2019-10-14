@@ -106,6 +106,7 @@ input[type="text"]{
   outline: none;
   padding: 14px 16px;
   padding-left: 25px;
+  font-size: 20px;
   font-family: kanit_regular;
   box-sizing: border-box;
 }
@@ -130,6 +131,36 @@ button{
   border-radius: 5px;
   display: inline-block;
   box-sizing: border-box;
+}
+
+.content h1{
+  color: #F0F0F0;
+  font-size: 64px;
+  font-family: kanit_light;
+  margin: 0;
+}
+.content h2{
+  color: #F0F0F0;
+  text-align: center;
+  font-size: 48px;
+  font-family: kanit_light;
+  margin: 0;
+}
+.content h3{
+  color: #F0F0F0;
+  text-align: center;
+  font-size: 36px;
+  font-family: kanit_light;
+  margin: 0;
+  margin-bottom: 25px;
+}
+.content h4{
+  color: #F0F0F0;
+  text-align: center;
+  font-size: 28px;
+  font-family: kanit_light;
+  margin: 0;
+  margin-bottom: 25px;
 }
 
 /*important for fade in/out animation*/
@@ -219,35 +250,6 @@ button{
   width: 1250px;
   margin: auto;
 }
-.content h1{
-  color: #F0F0F0;
-  font-size: 64px;
-  font-family: kanit_light;
-  margin: 0;
-}
-.content h2{
-  color: #F0F0F0;
-  text-align: center;
-  font-size: 48px;
-  font-family: kanit_light;
-  margin: 0;
-}
-.content h3{
-  color: #F0F0F0;
-  text-align: center;
-  font-size: 36px;
-  font-family: kanit_light;
-  margin: 0;
-  margin-bottom: 25px;
-}
-.content h4{
-  color: #F0F0F0;
-  text-align: center;
-  font-size: 28px;
-  font-family: kanit_light;
-  margin: 0;
-  margin-bottom: 25px;
-}
 
 /*Topic Style*/
 .topic_zone{
@@ -274,7 +276,6 @@ button{
   color: #F16645;
   border-radius: 10px;
   margin-bottom: 20px;
-  font-size: 20px;
   transition: 0.3s;
 }
 .topic_form input[type="text"]:focus{
@@ -284,7 +285,7 @@ button{
   border: 1px solid #fff;
 }
 .topic_form input[type="submit"]{
-  width: 30%;
+  width: 195px;
   background-color: rgba(241, 102, 69, 0.9);
   color: #F0F0F0;
   border: none;
@@ -328,7 +329,6 @@ button{
   padding-left: 25px;
   background-color: rgba(0, 0, 0, 0.8);
   color: #f0f0f0;
-  font-size: 20px;
   text-align: center;
   transition: 0.5s;
 }
@@ -369,6 +369,7 @@ button{
 #benefitremove{
   width: 20%;
   padding: 13px 12px;
+  margin-left: 0px;
   font-size: 36px;
   color: #F0F0F0;
   background-color: #5AB4BE;
@@ -377,6 +378,7 @@ button{
 #disadvantageremove{
   width: 20%;
   padding: 13px 12px;
+  margin-left: 0px;
   font-size: 36px;
   color: #F0F0F0;
   background-color: #BE645A;
@@ -475,6 +477,10 @@ button{
   color: #F0F0F0;
   background-color: #F38073;
 }
+.best_result{
+  font-family: kanit_regular;
+  font-size: 46px;
+}
 
 /*add choice and make a choice button*/
 #add_choice{
@@ -521,9 +527,6 @@ button{
 }
 #result{
   margin-top: 50px;
-}
-#result h2{
-  font-size: 42px;
 }
 
 /*Transtition Animation*/
@@ -636,12 +639,6 @@ button{
   background-image: linear-gradient(90deg, #90D982 50%, #7d7d7d 100%);
 }
 
-@media only screen and (max-width: 1250px) {
-  .before_submit{
-    left: 625px;
-  }
-}
-
 @-webkit-keyframes rotate_animation {
   0% {
     -webkit-transform: rotate(0deg);
@@ -660,5 +657,202 @@ button{
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  input[type="text"]{
+    font-size: 18px;
+  }
+  table{
+    width: 95%;
+  }
+  .content h1{
+    font-size: 60px;
+  }
+  .content h2{
+    font-size: 45px;
+  }
+  .content h3{
+    font-size: 34px;
+  }
+  .content h4{
+    font-size: 26px;
+  }
+  .best_result{
+    font-size: 44px;
+  }
+  .form{
+    width: 95%;
+  }
+  .content{
+    width: 100%;
+  }
+  .topic_zone{
+    width: 60%;
+  }
+  #result{
+    width: 90%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .benefit_form textarea{
+    width: 75%;
+  }
+  .disadvantage_form textarea{
+    width: 75%;
+  }
+  #benefitremove{
+    width: 25%;
+  }
+  #disadvantageremove{
+    width: 25%;
+  }
+  .topic_zone{
+    width: 70%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .content h1{
+    font-size: 56px;
+  }
+  .content h2{
+    font-size: 42px;
+  }
+  .content h3{
+    font-size: 32px;
+  }
+  .content h4{
+    font-size: 24px;
+  }
+  .progressbar li{
+    font-size: 16px;
+  }
+  .benefit_topic_col{
+    font-size: 24px;
+  }
+  .disadvantage_topic_col{
+    font-size: 24px;
+  }
+  .best_result{
+    font-size: 42px;
+  }
+  .topic_zone{
+    width: 70%;
+  }
+  .form{
+    width: 97%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .content h1{
+    font-size: 52px;
+  }
+  .content h2{
+    font-size: 36px;
+  }
+  .content h3{
+    font-size: 30px;
+  }
+  .content h4{
+    font-family: kanit_semibold;
+    font-size: 22px;
+  }
+  .best_result{
+    font-size: 38px;
+  }
+  .form input[type="text"]{
+    width: 80%;
+    margin-left: 2.5%;
+  }
+  .form button{
+    width: 15%;
+  }
+  #add_choice{
+    width: 44%;
+    font-size: 18px;
+  }
+  #center_choice{
+    width: 12%;
+    font-size: 18px;
+  }
+  #make_choice{
+    width: 44%;
+    font-size: 18px;
+  }
+  .topic_zone{
+    width: 80%;
+  }
+  .benefit_form{
+    width: 100%;
+    margin: auto;
+  }
+  .benefit_form button{
+    width: 95%;
+    margin-left: 2.5%;
+    font-size: 18px;
+  }
+  .benefit_form textarea{
+    width: 80%;
+    margin-left: 2.5%;
+  }
+  .disadvantage_form{
+    width: 100%;
+    margin: auto;
+  }
+  .disadvantage_form button{
+    width: 95%;
+    margin-left: 2.5%;
+    font-size: 18px;
+  }
+  .disadvantage_form textarea{
+    width: 80%;
+    margin-left: 2.5%;
+  }
+  #benefitremove{
+    width: 15%;
+  }
+  #disadvantageremove{
+    width: 15%;
+  }
+  .topic_zone{
+    width: 70%;
+  }
+  #result{
+    width: 95%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .form{
+    width: 100%;
+  }
+  .form input[type="text"]{
+    width: 78%;
+    margin-left: 2.5%;
+  }
+  .form button{
+    width: 17%;
+  }
+  .benefit_form button{
+    width: 95%;
+    margin-left: 2.5%;
+  }
+  .benefit_form textarea{
+    width: 75%;
+    margin-left: 2.5%;
+  }
+  .disadvantage_form button{
+    width: 95%;
+    margin-left: 2.5%;
+  }
+  .disadvantage_form textarea{
+    width: 75%;
+    margin-left: 2.5%;
+  }
+  #benefitremove{
+    width: 20%;
+  }
+  #disadvantageremove{
+    width: 20%;
   }
 }

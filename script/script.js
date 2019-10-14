@@ -487,22 +487,22 @@ function makeupchoice(){
     });
     return 0;
   }if (max_count != 0){
-    result_output += '<h2>ฉันลังเลระหว่าง <span style="font-family: kanit_regular;font-size: 46px;">';
+    result_output += '<h2>ฉันลังเลระหว่าง <span class="best_result">';
     for (i=0; i<max_count; i++){
       result_output += choice_array[pos[i]] + ', ';
     }
     result_output += choice_array[pos[i]] + '</span></h2>'
   }else{
     if (ratio_max > 1.5){
-      result_output += '<h2>ไม่ต้องลังเลลอง <span style="font-family: kanit_regular;font-size: 46px;">"' + choice_array[pos] + '"</span> ไปเลย!!!</h2>';
+      result_output += '<h2>ไม่ต้องลังเลลอง <span class="best_result">"' + choice_array[pos] + '"</span> ไปเลย!!!</h2>';
     }else if (ratio_max > 1){
-      result_output += '<h2>มันคุ้มค่าที่จะลอง <span style="font-family: kanit_regular;font-size: 46px;">"' + choice_array[pos] + '"</span> อยู่นะ</h2>';
+      result_output += '<h2>มันคุ้มค่าที่จะลอง <span class="best_result">"' + choice_array[pos] + '"</span> อยู่นะ</h2>';
     }else if (ratio_max > 0.8) {
-      result_output += '<h2>ถ้าสนใจก็ลอง <span style="font-family: kanit_regular;font-size: 46px;">"' + choice_array[pos] + '"</span> ดูสิ</h2>';
+      result_output += '<h2>ถ้าสนใจก็ลอง <span class="best_result">"' + choice_array[pos] + '"</span> ดูสิ</h2>';
     }else if (ratio_max > 0.5) {
-      result_output += '<h2>อยากจะลองเสี่ยง <span style="font-family: kanit_regular;font-size: 46px;">"' + choice_array[pos] + '"</span> ดูมั้ย?</h2>';
+      result_output += '<h2>อยากจะลองเสี่ยง <span class="best_result">"' + choice_array[pos] + '"</span> ดูมั้ย?</h2>';
     }else{
-      result_output += '<h2>ไม่ควรที่จะลองอะไรแต่เสี่ยง <span style="font-family: kanit_regular;font-size: 46px;">"' + choice_array[pos] + '"</span> ดูก็ได้</h2>';
+      result_output += '<h2>ไม่ควรที่จะลองอะไรแต่เสี่ยง <span class="best_result">"' + choice_array[pos] + '"</span> ดูก็ได้</h2>';
     }
   }
   result_output += '<h4>ทางเลือกการตัดสินใจสุดท้ายเป็นของคุณเลือกในทางตามใจตัวเองดีกว่า</h4>';

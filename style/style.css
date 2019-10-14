@@ -245,7 +245,7 @@ button{
 /*Topic Style*/
 .topic_zone{
   margin: auto;
-  width: 650px;
+  width: 55%;
   margin-right: auto;
   margin-top: 30px;
   text-align: center;
@@ -621,6 +621,7 @@ button{
   top: calc(5px + 1vw);
   left: -50%;
   z-index: -1;
+  -webkit-transform:translate3d(0, 0, 0); /*active z-index on safari*/
 }
 .progressbar li:first-child:after {
   content: none;
@@ -683,7 +684,7 @@ button{
     width: 85%;
   }
   .topic_zone{
-    width: 50%;
+    width: 55%;
   }
   #result{
     width: 90%;

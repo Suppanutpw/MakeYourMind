@@ -554,8 +554,9 @@ button{
 .loader:after {
   position: fixed;
   left: 50%;
-  top: 45%;
-  transform: translate(-50%, -50%);
+  top: 50%;
+  margin-top: -40px;
+  margin-left: -40px;
   border-radius: 50%;
   width: 80px;
   height: 80px;
@@ -583,7 +584,7 @@ button{
 }
 .progressbar {
   counter-reset: step;
-  transform: translate(-1%, 0%);
+  padding: 0px;
 }
 .progressbar li {
   list-style-type: none;
@@ -663,6 +664,9 @@ button{
 @media only screen and (max-width: 1250px) {
   input[type="text"]{
     font-size: 18px;
+  }
+  .form button{
+    padding: 8.5px 12px;
   }
   table{
     width: 95%;
@@ -794,6 +798,7 @@ button{
   }
   .benefit_form textarea{
     width: 80%;
+    font-size: 18px;
     margin-left: 2.5%;
   }
   .disadvantage_form{
@@ -807,13 +812,16 @@ button{
   }
   .disadvantage_form textarea{
     width: 80%;
+    font-size: 18px;
     margin-left: 2.5%;
   }
   #benefitremove{
     width: 15%;
+    padding: 9px 12px;
   }
   #disadvantageremove{
     width: 15%;
+    padding: 9px 12px;
   }
   .topic_zone{
     width: 70%;
@@ -821,8 +829,80 @@ button{
   #result{
     width: 95%;
   }
+  .show_result input[type="text"]{
+    font-size: 20px;
+    padding: 10px 16px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .content h1{
+    font-size: 36px;
+  }
+  .content h2{
+    font-size: 30px;
+  }
+  .content h3{
+    font-size: 24px;
+  }
+  .benefit_form h3{
+    font-size: 28px;
+  }
+  .disadvantage_form h3{
+    font-size: 28px;
+  }
+  .content h4{
+    font-family: kanit_semibold;
+    font-size: 18px;
+  }
+  .progressbar li{
+    font-size: 14px;
+  }
+  .best_result{
+    font-size: 32px;
+  }
+  .benefit_form button{
+    font-size: 16px;
+    padding: 8px;
+  }
+  .disadvantage_form button{
+    font-size: 16px;
+    padding: 8px;
+  }
+  .topic_form input[type="submit"]{
+    font-size: 14px;
+    width: 155px;
+    padding: 8px 20px;
+  }
 }
 @media screen and (max-width: 600px) {
+  input[type="text"]{
+    font-size: 14px;
+  }
+  .form button{
+    padding: 5.5px 12px;
+  }
+  .content h1{
+    font-size: 33px;
+  }
+  .content h2{
+    font-size: 24px;
+  }
+  .content h3{
+    font-size: 20px;
+  }
+  .benefit_form h3{
+    font-size: 24px;
+  }
+  .disadvantage_form h3{
+    font-size: 28px;
+  }
+  .content h4{
+    font-family: kanit_semibold;
+    font-size: 14px;
+  }
+  .best_result{
+    font-size: 28px;
+  }
   .form{
     width: 100%;
   }
@@ -849,10 +929,128 @@ button{
     width: 75%;
     margin-left: 2.5%;
   }
+  .benefit_topic_col{
+    font-size: 20px;
+  }
+  .benefit_col{
+    font-size: 18px;
+  }
+  .disadvantage_topic_col{
+    font-size: 20px;
+  }
+  .disadvantage_col{
+    font-size: 18px;
+  }
   #benefitremove{
     width: 20%;
   }
   #disadvantageremove{
     width: 20%;
+  }
+  .show_result input[type="text"]{
+    font-size: 18px;
+    padding: 10px 16px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .content h1{
+    font-size: 30px;
+  }
+  .content h2{
+    font-size: 22px;
+  }
+  .content h3{
+    font-size: 18px;
+  }
+  .benefit_form h3{
+    font-size: 22px;
+  }
+  .disadvantage_form h3{
+    font-size: 22px;
+  }
+  .content h4{
+    font-family: kanit_semibold;
+    font-size: 12px;
+  }
+  .best_result{
+    font-size: 24px;
+  }
+  #add_choice{
+    font-size: 12px;
+    padding: 8px;
+    width: 42.5%;
+  }
+  #center_choice{
+    font-size: 12px;
+    width: 15%;
+  }
+  #make_choice{
+    font-size: 12px;
+    padding: 8px;
+    width: 42.5%;
+  }
+  .topic_zone{
+    width: 75%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .content h1{
+    font-size: 28px;
+  }
+  .content h2{
+    font-size: 20px;
+  }
+  .content h3{
+    font-size: 14px;
+  }
+  .benefit_form h3{
+    font-size: 20px;
+  }
+  .disadvantage_form h3{
+    font-size: 20px;
+  }
+  .content h4{
+    font-family: kanit_semibold;
+    font-size: 10px;
+  }
+  .progressbar li{
+    font-size: 12px;
+  }
+  .best_result{
+    font-size: 22px;
+  }
+  .benefit_form textarea{
+    width: 70%;
+    font-size: 16px;
+    margin-left: 2.5%;
+  }
+  .disadvantage_form textarea{
+    width: 70%;
+    font-size: 16px;
+    margin-left: 2.5%;
+  }
+  #benefitremove{
+    width: 25%;
+    padding: 7px 12px;
+  }
+  #disadvantageremove{
+    width: 25%;
+    padding: 7px 12px;
+  }
+  .benefit_topic_col{
+    font-size: 18px;
+  }
+  .benefit_col{
+    font-size: 16px;
+  }
+  .disadvantage_topic_col{
+    font-size: 18px;
+  }
+  .disadvantage_col{
+    font-size: 16px;
+  }
+  .show_result input[type="text"]{
+    font-size: 16px;
+    padding: 10px 16px;
   }
 }

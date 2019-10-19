@@ -133,23 +133,37 @@ function disadvantage(pos, movetoleft=false){
 
 //Check for null form
 function checktype(){
-  var checktype = (document.getElementById('topic_form').topic.value != ""); //check topic
+  var check_bool = true;
+  if (document.getElementById('topic_form').topic.value == "") //check topic
+    check_bool = false
 
   var choice_data = document.getElementsByClassName('choice_input');
-  for (i=0; i<choice_count&&checktype; i++){
-      checktype = (choice_data[i].value != "");
+  for (i=0; i<choice_count&&check_bool; i++){
+    if (choice_data[i].value == "")
+      check_bool = false;
 
-      var benefit_data = document.getElementsByClassName('benefit_input' + i); //Benefit form
-      for (j=0; j<benefit_data_count[i]&&checktype; j++)
-        checktype = (benefit_data[j].value != "");
+    var benefit_data = document.getElementsByClassName('benefit_input' + i); //Benefit form
+    for (j=0; j<benefit_data_count[i]&&check_bool; j++)
+      if (benefit_data[j].value == "")
+        check_bool = false;
 
-      var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i); //disadvantage Form
-      for (j=0; j<disadvantage_data_count[i]&&checktype; j++)
-        checktype = (disadvantage_data[j].value != "");
+    var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i); //disadvantage Form
+    for (j=0; j<disadvantage_data_count[i]&&check_bool; j++)
+      if (disadvantage_data[j].value == "")
+        check_bool = false;
   }
-  if (!checktype)
+  if (!check_bool)
     swal({title: "คำเตือน", text: "กรุณากรอกข้อมูลให้ครบถ้วน", type: "warning",});
-  return checktype;
+  return check_bool;
+}
+function checkbedis(){
+  for (i=0; i<choice_count; i++){
+    if (benefit_data_count[i] == 0 && disadvantage_data_count[i] == 0){
+      swal({title: "คำเตือน", text: "กรุณาใส่ข้อมูลในทางเลือกอย่างน้อย 1 ข้อ", type: "warning",});
+      return false;
+    }
+  }
+  return true;
 }
 
 //Before Denefit/Disadventage
@@ -346,6 +360,7 @@ function remove_choice_form(choiceindex){
 
 function makeupchoice(){
   if (!checktype()) {return;} //check form is not null
+  if (!checkbedis()) {return;} //Check for 0 count of benefit/disadvantage
 
   result_output = '<div class="topic_zone"><h1>Make<span style="color: #F16645;">Your</span>Mind</h1>'; //Topic Zone
   result_output += '<h3>แอปช่วยตัดสินใจ ด้วยวิธีการที่ถูกต้อง</h3>';
@@ -356,12 +371,10 @@ function makeupchoice(){
   result_output += '</ul></div>';
 
   var showoutput = document.getElementById('result');
-  var bedis_ratio = [], benefit_length = [], disadvantage_length = [], choice_array = []; // length is a length of text
+  var bedis_ratio = [], benefit_length = [], disadvantage_length = []; // length is a length of text
 
   var choice_data = document.getElementsByClassName('choice_input');
   for (i=0; i<choice_count; i++){ //Calculate ratio to find the best choice
-    choice_array[i] = choice_data[i].value;
-
     //Benefit form
     benefit_length[i] = 0;
     var benefit_data = document.getElementsByClassName('benefit_input' + i);
@@ -375,20 +388,31 @@ function makeupchoice(){
       disadvantage_length[i] += disadvantage_data[j].value.length;
 
     // Calculate ratio
-    if (disadvantage_data_count[i] == 0 && disadvantage_length[i] == 0){
-      bedis_ratio[i] = benefit_data_count[i] * benefit_length[i];
-    }else if (disadvantage_length[i] == 0){
-      bedis_ratio[i] = (benefit_data_count[i]/disadvantage_data_count[i]) * benefit_length[i];
-    }else if (disadvantage_data_count[i] == 0){
-      bedis_ratio[i] = benefit_data_count[i] * (benefit_length[i]/disadvantage_length[i]);
+    var first_var, second_var, minus = 1;
+    if (benefit_data_count[i] >= disadvantage_data_count[i]){
+      first_var = [benefit_data_count[i], benefit_length[i]];
+      second_var = [disadvantage_data_count[i], disadvantage_length[i]];
     }else{
-      bedis_ratio[i] = (benefit_data_count[i]/disadvantage_data_count[i]) * (benefit_length[i]/disadvantage_length[i]);
+      first_var = [disadvantage_data_count[i], disadvantage_length[i]];
+      second_var = [benefit_data_count[i], benefit_length[i]];
+      minus = -1;
     }
+
+    if (second_var[0] == 0 && second_var[1] == 0){ //Protect Division By zero
+      bedis_ratio[i] = first_var[0] * (first_var[1]/5);
+    }else if (second_var[1] == 0){
+      bedis_ratio[i] = (first_var[0]/second_var[0]) * first_var[1];
+    }else if (second_var[0] == 0){
+      bedis_ratio[i] = first_var[0] * (first_var[1]/second_var[1]);
+    }else{
+      bedis_ratio[i] = (first_var[0]/second_var[0]) * (first_var[1]/second_var[1]);
+    }
+    bedis_ratio[i] *= minus;
   }
 
   //Find max of benefit choice
-  var max_count = 0, ratio_max = -1, pos = []; //max_count -> number of max number and assign as index in pos
-  for (i=0; i<choice_count; i++){
+  var max_count = 0, ratio_max = bedis_ratio[0], pos = [0]; //max_count -> number of max number and assign as index in pos
+  for (i=1; i<choice_count; i++){
     if (ratio_max < bedis_ratio[i]){
       ratio_max = bedis_ratio[i];
       max_count = 0;
@@ -405,29 +429,22 @@ function makeupchoice(){
     }
   }
 
-  if (choice_array[pos[0]] == undefined || ratio_max == 0 || ratio_max == NaN){
-    swal({
-      title: "คำเตือน",
-      text: "กรุณาใส่ข้อมูลในทางเลือกอย่างน้อย 1 ข้อ",
-      type: "warning",
-    });
-    return;
-  }if (max_count != 0){
+  if (max_count != 0){
     result_output += '<h2>ฉันลังเลระหว่าง <span class="best_result">';
     for (i=0; i<max_count; i++) //If max have 2 value upper
-      result_output += choice_array[pos[i]] + ', ';
-    result_output += choice_array[pos[i]] + '</span></h2>'
+      result_output += choice_data[pos[i]].value + ', ';
+    result_output += choice_data[pos[i]].value + '</span></h2>'
   }else{
-    if (ratio_max > 1.5){
-      result_output += '<h2>ไม่ต้องลังเลลอง <span class="best_result">"' + choice_array[pos] + '"</span> ไปเลย!!!</h2>';
-    }else if (ratio_max > 1){
-      result_output += '<h2>มันคุ้มค่าที่จะลอง <span class="best_result">"' + choice_array[pos] + '"</span> อยู่นะ</h2>';
-    }else if (ratio_max > 0.8) {
-      result_output += '<h2>ถ้าสนใจก็ลอง <span class="best_result">"' + choice_array[pos] + '"</span> ดูสิ</h2>';
-    }else if (ratio_max > 0.5) {
-      result_output += '<h2>อยากจะลองเสี่ยง <span class="best_result">"' + choice_array[pos] + '"</span> ดูมั้ย?</h2>';
+    if (ratio_max > 10){
+      result_output += '<h2>ไม่ต้องลังเลลอง <span class="best_result">"' + choice_data[pos[0]].value + '"</span> ไปเลย!!!</h2>';
+    }else if (ratio_max > 5){
+      result_output += '<h2>มันคุ้มค่าที่จะลอง <span class="best_result">"' + choice_data[pos[0]].value + '"</span> อยู่นะ</h2>';
+    }else if (ratio_max > 0) {
+      result_output += '<h2>ถ้าสนใจก็ลอง <span class="best_result">"' + choice_data[pos[0]].value + '"</span> ดูสิ</h2>';
+    }else if (ratio_max > -5) {
+      result_output += '<h2>อยากจะลองเสี่ยง <span class="best_result">"' + choice_data[pos[0]].value + '"</span> ดูมั้ย?</h2>';
     }else{
-      result_output += '<h2>ไม่ควรที่จะลองอะไรแต่เสี่ยง <span class="best_result">"' + choice_array[pos] + '"</span> ดูก็ได้</h2>';
+      result_output += '<h2>ไม่ควรที่จะลองอะไรแต่เสี่ยง <span class="best_result">"' + choice_data[pos[0]].value + '"</span> ดูก็ได้</h2>';
     }
   }
   result_output += '<h4>ทางเลือกการตัดสินใจสุดท้ายเป็นของคุณเลือกในทางตามใจตัวเองดีกว่า</h4>';

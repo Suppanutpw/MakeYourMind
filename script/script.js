@@ -542,9 +542,10 @@ function show_table(bedis_ratio){ //Result Table
     if (benefit_data_count[i] != 0){
       result_output += '<tr><td class="benefit_col">';
       var benefit_data = document.getElementsByClassName('benefit_input' + i);
+      var effect_benefit = document.getElementsByClassName('benefit_effect' + i);
       for (j=0; j<benefit_data_count[i]-1; j++)
-        result_output += '<span style="margin-bottom: 12px;">' + benefit_data[j].value + '</span>';
-      result_output += '<span>' + benefit_data[benefit_data_count[i]-1].value + '</span></td>'; //Have no margin bottom for vertical center
+        result_output += '<span style="margin-bottom: 12px;">' + benefit_data[j].value + ' -> (กระทบ' + all_effect[5 - effect_benefit[j].value] + ')</span>';
+      result_output += '<span>' + benefit_data[benefit_data_count[i]-1].value + ' -> (กระทบ' + all_effect[5 - effect_benefit[benefit_data_count[i]-1].value] + ')</span></td>'; //Have no margin bottom for vertical center
     }else{
       result_output += '<tr><td class="benefit_col no_data">ไม่มี</td>'; //If have no data
     }
@@ -553,9 +554,10 @@ function show_table(bedis_ratio){ //Result Table
     if (disadvantage_data_count[i] != 0){
       result_output += '<td class="disadvantage_col">';
       var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i);
+      var effect_disadvantage = document.getElementsByClassName('disadvantage_effect' + i);
       for (j=0; j<disadvantage_data_count[i]-1; j++)
-        result_output += '<span style="margin-bottom: 12px;">' + disadvantage_data[j].value + '</span>';
-      result_output += '<span>' + disadvantage_data[disadvantage_data_count[i]-1].value + '</span></td></tr>'; //Have no margin bottom for vertical center
+        result_output += '<span style="margin-bottom: 12px;">' + disadvantage_data[j].value + ' -> (กระทบ' + all_effect[5 - effect_disadvantage[j].value] + ')</span>';
+      result_output += '<span>' + disadvantage_data[disadvantage_data_count[i]-1].value + ' -> (กระทบ' + all_effect[5 - effect_disadvantage[disadvantage_data_count[i]-1].value] + ')</span></td></tr>'; //Have no margin bottom for vertical center
     }else{
       result_output += '<td class="disadvantage_col no_data">ไม่มี</td></tr>'; //If have no data
     }

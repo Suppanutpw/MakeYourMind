@@ -452,7 +452,6 @@ button{
   width: 80%;
   height: calc(30px + 4.48vw);
   float: left;
-  margin-bottom: 5px;
   padding: 10px 12px;
   padding-left: 25px;
   background-color: rgba(0, 0, 0, 0.6);
@@ -801,6 +800,10 @@ button{
   #disadvantageremove{
     width: 15%;
     padding: 10px 12px;
+  }
+  .effect{
+    width: 95%;
+    margin-left: 2.5%;
   }
   .topic_zone{
     width: 70%;

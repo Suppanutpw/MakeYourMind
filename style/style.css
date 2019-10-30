@@ -427,17 +427,6 @@ button{
   color: #F0F0F0;
   background-color: #5AB4BE;
 }
-.effect{
-  width: 100%;
-  margin: 0px;
-  margin-bottom: 20px;
-  padding: 5px 20px;
-  border-radius: 0px 0px 15px 15px;
-  vertical-align: middle;
-  background-color: rgba(0, 0, 0, 0.1);
-  -webkit-appearance: button;
-  outline: none;
-}
 
 /*disadvantage Zone*/
 .disadvantage_form{
@@ -490,6 +479,18 @@ button{
 .best_result{
   font-family: kanit_regular;
   font-size: calc(10px + 3.48vw);
+}
+.effect{
+  width: 100%;
+  margin: 0px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border-radius: 0px 0px 15px 15px;
+  vertical-align: middle;
+  background-color: rgba(0, 0, 0, 0.1);
+  -webkit-appearance: button;
+  outline: none;
+  box-sizing: border-box;
 }
 
 /*add choice and make a choice button*/

@@ -80,7 +80,7 @@ function benefit_input_form(i, j, banefit_var="", isnewblock=false, effect=0){
   all_form = '<textarea name="benefitData'+ (i) + (j) +'" class="benefit_input' + (i) + '" placeholder="ข้อดี/ประโยชน์ที่ได้รับ">' + banefit_var + '</textarea>';
   all_form += '<button id="benefitremove" type="submit" onclick="remove_benefit_form(' + (i) + ', ' + (j) + ')"><i class="fa fa-times"></i></button>';
 
-  all_form += '<select class="effect" id="effect" style="font-family: kanit_semibold; font-size: calc(6px + 1vw); color: #fff;">';
+  all_form += '<select class="benefit_effect' + (i) + ' effect" id="effect" style="font-family: kanit_semibold; font-size: calc(6px + 1vw); color: #fff;">';
   all_form += '<option value="0" selected disabled>ผลกระทบในแง่บวก</option>';
   for (i=0; i<5; i++) {
     if (effect != 5-i) {
@@ -99,13 +99,13 @@ function disadvantage_input_form(i, j, disadvantage_var="", isnewblock=false, ef
   all_form = '<textarea name="disadvantage_Data'+ (i) + (j) +'" class="disadvantage_input' + (i) + '" placeholder="ข้อเสีย/ความเสี่ยงที่จะเกิด">' + disadvantage_var + '</textarea>';
   all_form += '<button id="disadvantageremove" type="submit" onclick="remove_disadvantage_form(' + (i) + ', ' + (j) + ')"><i class="fa fa-times"></i></button>';
 
-  all_form += '<select class="effect" id="effect" style="font-family: kanit_semibold; font-size: calc(6px + 1vw); color: #fff;">';
+  all_form += '<select class="disadvantage_effect' + (i) + ' effect" id="effect" style="font-family: kanit_semibold; font-size: calc(6px + 1vw); color: #fff;">';
   all_form += '<option value="0" selected disabled>ผลกระทบในแง่ลบ</option>';
   for (i=0; i<5; i++){
     if (effect != 5-i) {
-      all_form += '<option value="' + 5-i + '">' + all_effect[i] + '</option>';
+      all_form += '<option value="' + (5-i) + '">' + all_effect[i] + '</option>';
     }else {
-      all_form += '<option value="' + 5-i + '" selected>' + all_effect[i] + '</option>';
+      all_form += '<option value="' + (5-i) + '" selected>' + all_effect[i] + '</option>';
     }
   }
   all_form += '</select>';
@@ -142,15 +142,17 @@ function retry_button(){
 function benefit(pos, movetoleft=false){
   all_form = '<div class="benefit_form"><h3>ข้อดี/ผลประโยชน์</h3>';
   var benefit_data = document.getElementsByClassName('benefit_input' + pos);
+  var effect_benefit = document.getElementsByClassName('benefit_effect' + pos);
   for (j=0; j<benefit_data_count[pos]; j++)
-    all_form += benefit_input_form(pos-movetoleft, j, benefit_data[j].value);
+    all_form += benefit_input_form(pos-movetoleft, j, benefit_data[j].value, false, effect_benefit[j].value);
   return all_form;
 }
 function disadvantage(pos, movetoleft=false){
   all_form = '<div class="disadvantage_form"><h3>ข้อเสีย/ความเสี่ยง</h3>';
   var disadvantage_data = document.getElementsByClassName('disadvantage_input' + pos);
+  var effect_disadvantage = document.getElementsByClassName('disadvantage_effect' + pos);
   for (j=0; j<disadvantage_data_count[pos]; j++)
-      all_form += disadvantage_input_form(pos-movetoleft, j, disadvantage_data[j].value);
+      all_form += disadvantage_input_form(pos-movetoleft, j, disadvantage_data[j].value, false, effect_disadvantage[j].value);
   return all_form;
 }
 

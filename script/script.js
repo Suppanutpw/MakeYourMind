@@ -81,7 +81,12 @@ function benefit_input_form(i, j, banefit_var="", isnewblock=false, effect=0){
   all_form += '<button id="benefitremove" type="submit" onclick="remove_benefit_form(' + (i) + ', ' + (j) + ')"><i class="fa fa-times"></i></button>';
 
   all_form += '<select class="benefit_effect' + (i) + ' effect" id="effect" style="font-family: kanit_semibold; font-size: calc(6px + 1vw); color: #fff;">';
-  all_form += '<option value="0" selected disabled>ผลกระทบในแง่บวก</option>';
+  if (effect == 0){
+    all_form += '<option value="0" selected disabled>ผลกระทบในแง่บวก</option>';
+  }else{
+    all_form += '<option value="0" disabled>ผลกระทบในแง่บวก</option>';
+  }
+
   for (i=0; i<5; i++) {
     if (effect != 5-i) {
       all_form += '<option value="' + (5-i) + '">' + all_effect[i] + '</option>';
@@ -100,7 +105,12 @@ function disadvantage_input_form(i, j, disadvantage_var="", isnewblock=false, ef
   all_form += '<button id="disadvantageremove" type="submit" onclick="remove_disadvantage_form(' + (i) + ', ' + (j) + ')"><i class="fa fa-times"></i></button>';
 
   all_form += '<select class="disadvantage_effect' + (i) + ' effect" id="effect" style="font-family: kanit_semibold; font-size: calc(6px + 1vw); color: #fff;">';
-  all_form += '<option value="0" selected disabled>ผลกระทบในแง่ลบ</option>';
+  if (effect == 0){
+    all_form += '<option value="0" selected disabled>ผลกระทบในแง่ลบ</option>';
+  }else{
+    all_form += '<option value="0" disabled>ผลกระทบในแง่ลบ</option>';
+  }
+
   for (i=0; i<5; i++){
     if (effect != 5-i) {
       all_form += '<option value="' + (5-i) + '">' + all_effect[i] + '</option>';
@@ -158,7 +168,7 @@ function disadvantage(pos, movetoleft=false){
 
 //Check for null form
 function checktype(){
-  var check_bool = true;
+  var check_bool = true, effect_check = true;
   if (document.getElementById('topic_form').topic.value == "") //check topic
     check_bool = false
 
@@ -168,18 +178,31 @@ function checktype(){
       check_bool = false;
 
     var benefit_data = document.getElementsByClassName('benefit_input' + i); //Benefit form
-    for (j=0; j<benefit_data_count[i]&&check_bool; j++)
-      if (benefit_data[j].value == "")
+    var effect_benefit = document.getElementsByClassName('benefit_effect' + i); //Benefit Weight Effect
+    for (j=0; j<benefit_data_count[i]&&check_bool; j++){
+      if (benefit_data[j].value == ""){
         check_bool = false;
+      }if (effect_benefit[j].value == 0){
+        effect_check = false;
+      }
+    }
 
     var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i); //disadvantage Form
-    for (j=0; j<disadvantage_data_count[i]&&check_bool; j++)
-      if (disadvantage_data[j].value == "")
+    var effect_disadvantage = document.getElementsByClassName('disadvantage_effect' + i); //Disadvantage Weight Effect
+    for (j=0; j<disadvantage_data_count[i]&&check_bool; j++){
+      if (disadvantage_data[j].value == ""){
         check_bool = false;
+      }if (effect_disadvantage[j].value == 0){
+        effect_check = false;
+      }
+    }
   }
-  if (!check_bool)
+  if (!check_bool){
     swal({title: "คำเตือน", text: "กรุณากรอกข้อมูลให้ครบถ้วน", type: "warning",});
-  return check_bool;
+  }else if (!effect_check){
+    swal({title: "คำเตือน", text: "กรุณาเลือกระดับผลกระทบให้ครบถ้วน", type: "warning",});
+  }
+  return (check_bool&&effect_check);
 }
 function checkbedis(){
   for (i=0; i<choice_count; i++){
@@ -265,9 +288,10 @@ function remove_benefit_form(remove_i, remove_j){
     //Benefit form
     all_form += '<div class="benefit_form"><h3>ข้อดี/ผลประโยชน์</h3>';
     var benefit_data = document.getElementsByClassName('benefit_input' + i), movetoleft = false;
+    var effect_benefit = document.getElementsByClassName('benefit_effect' + i);
     for (j=0; j<benefit_data_count[i]; j++){
       if (i != remove_i || j != remove_j){ //If not the delete point
-        all_form += benefit_input_form(i, j-movetoleft, banefit_var=benefit_data[j].value);
+        all_form += benefit_input_form(i, j-movetoleft, benefit_data[j].value, false, effect_benefit[j].value);
       }else {
         movetoleft = true; //Move form replace remove point
       }
@@ -294,9 +318,10 @@ function remove_disadvantage_form(remove_i, remove_j){
     //disadvantage Form
     all_form += '<div class="disadvantage_form"><h3>ข้อเสีย/ความเสี่ยง</h3>';
     var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i), movetoleft = false; //movetoleft not use until pass delete point
+    var effect_disadvantage = document.getElementsByClassName('disadvantage_effect' + i);
     for (j=0; j<disadvantage_data_count[i]; j++){
       if (i != remove_i || j != remove_j){
-        all_form += disadvantage_input_form(i, j-movetoleft, disadvantage_var=disadvantage_data[j].value);
+        all_form += disadvantage_input_form(i, j-movetoleft, disadvantage_data[j].value, false, effect_disadvantage[j].value);
       }else {
         movetoleft = true; //Move form replace remove point
       }
@@ -396,43 +421,33 @@ function makeupchoice(){
   result_output += '</ul></div>';
 
   var showoutput = document.getElementById('result');
-  var bedis_ratio = [], benefit_length = [], disadvantage_length = []; // length is a length of text
+  var bedis_ratio = [], benefit_length = [], weight_benefit = [], disadvantage_length = [], weight_disadvantage = []; // length is a length of text
 
   var choice_data = document.getElementsByClassName('choice_input');
   for (i=0; i<choice_count; i++){ //Calculate ratio to find the best choice
     //Benefit form
-    benefit_length[i] = 0;
+    benefit_length[i] = 1;
+    weight_benefit[i] = 0;
     var benefit_data = document.getElementsByClassName('benefit_input' + i);
-    for (j=0; j<benefit_data_count[i]; j++)
+    var effect_benefit = document.getElementsByClassName('benefit_effect' + i);
+    for (j=0; j<benefit_data_count[i]; j++){
       benefit_length[i] += benefit_data[j].value.length;
+      weight_benefit[i] += effect_benefit[j].value;
+    }
+    weight_benefit[i] = weight_benefit[i]*benefit_data_count[i] + 1;
 
     //disadvantage form
-    disadvantage_length[i] = 0;
-    var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i)
-    for (j=0; j<disadvantage_data_count[i]; j++)
+    disadvantage_length[i] = 1;
+    weight_disadvantage[i] = 0;
+    var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i);
+    var effect_disadvantage = document.getElementsByClassName('disadvantage_effect' + i);
+    for (j=0; j<disadvantage_data_count[i]; j++){
       disadvantage_length[i] += disadvantage_data[j].value.length;
-
-    // Calculate ratio
-    var first_var, second_var, minus = 1;
-    if (benefit_data_count[i] >= disadvantage_data_count[i]){
-      first_var = [benefit_data_count[i], benefit_length[i]];
-      second_var = [disadvantage_data_count[i], disadvantage_length[i]];
-    }else{
-      first_var = [disadvantage_data_count[i], disadvantage_length[i]];
-      second_var = [benefit_data_count[i], benefit_length[i]];
-      minus = -1;
+      weight_disadvantage[i] += effect_disadvantage[j].value;
     }
+    weight_disadvantage[i] = weight_disadvantage[i]*disadvantage_data_count[i] + 1;
 
-    if (second_var[0] == 0 && second_var[1] == 0){ //Protect Division By zero
-      bedis_ratio[i] = first_var[0] * (first_var[1]/5);
-    }else if (second_var[1] == 0){
-      bedis_ratio[i] = (first_var[0]/second_var[0]) * first_var[1];
-    }else if (second_var[0] == 0){
-      bedis_ratio[i] = first_var[0] * (first_var[1]/second_var[1]);
-    }else{
-      bedis_ratio[i] = (first_var[0]/second_var[0]) * (first_var[1]/second_var[1]);
-    }
-    bedis_ratio[i] *= minus;
+    bedis_ratio[i] = (benefit_length[i]/disadvantage_length[i])/100 + (weight_benefit[i]/weight_disadvantage[i]); //Calculate Ratio
   }
 
   //Find max of benefit choice
@@ -460,13 +475,13 @@ function makeupchoice(){
       result_output += choice_data[pos[i]].value + ', ';
     result_output += choice_data[pos[i]].value + '</span></h2>'
   }else{
-    if (ratio_max > 10){
+    if (ratio_max > 60){
       result_output += '<h2>ไม่ต้องลังเลลอง <span class="best_result">"' + choice_data[pos[0]].value + '"</span> ไปเลย!!!</h2>';
-    }else if (ratio_max > 5){
+    }else if (ratio_max > 40){
       result_output += '<h2>มันคุ้มค่าที่จะลอง <span class="best_result">"' + choice_data[pos[0]].value + '"</span> อยู่นะ</h2>';
-    }else if (ratio_max > 0) {
+    }else if (ratio_max > 20) {
       result_output += '<h2>ถ้าสนใจก็ลอง <span class="best_result">"' + choice_data[pos[0]].value + '"</span> ดูสิ</h2>';
-    }else if (ratio_max > -5) {
+    }else if (ratio_max > 0.1) {
       result_output += '<h2>อยากจะลองเสี่ยง <span class="best_result">"' + choice_data[pos[0]].value + '"</span> ดูมั้ย?</h2>';
     }else{
       result_output += '<h2>ไม่ควรที่จะลองอะไรแต่เสี่ยง <span class="best_result">"' + choice_data[pos[0]].value + '"</span> ดูก็ได้</h2>';

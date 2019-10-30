@@ -79,6 +79,7 @@ body{
 }
 div{
   box-sizing: border-box;
+  outline: none;
 }
 
 /*Table Result*/
@@ -99,6 +100,7 @@ td{
 input{
   -webkit-appearance: none;
   -moz-appearance: none;
+  outline: none;
 }
 input[type="text"]{
   display: block;
@@ -124,12 +126,14 @@ textarea{
   padding-left: 25px;
   font-family: kanit_regular;
   box-sizing: border-box;
+  outline: none;
 }
 button{
   border: none;
   border-radius: 5px;
   display: inline-block;
   box-sizing: border-box;
+  outline: none;
 }
 
 .content h1{

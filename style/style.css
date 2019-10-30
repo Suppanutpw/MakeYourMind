@@ -364,7 +364,7 @@ button{
   width: 20%;
   height: calc(30px + 4.48vw);
   padding: 13px 12px;
-  margin-left: 0px;
+  margin: 0px;
   font-size: calc(10px + 2.28vw);
   color: #F0F0F0;
   background-color: #5AB4BE;
@@ -374,7 +374,7 @@ button{
   width: 20%;
   height: calc(30px + 4.48vw);
   padding: 13px 12px;
-  margin-left: 0px;
+  margin: 0px;
   font-size: calc(10px + 2.28vw);
   color: #F0F0F0;
   background-color: #BE645A;
@@ -400,7 +400,6 @@ button{
   width: 80%;
   height: calc(30px + 4.48vw);
   float: left;
-  margin-bottom: 5px;
   padding: 10px 12px;
   padding-left: 25px;
   background-color: rgba(0, 0, 0, 0.6);
@@ -427,6 +426,17 @@ button{
   cursor: pointer;
   color: #F0F0F0;
   background-color: #5AB4BE;
+}
+.effect{
+  width: 100%;
+  margin: 0px;
+  margin-bottom: 20px;
+  padding: 5px 20px;
+  border-radius: 0px 0px 15px 15px;
+  vertical-align: middle;
+  background-color: rgba(0, 0, 0, 0.1);
+  -webkit-appearance: button;
+  outline: none;
 }
 
 /*disadvantage Zone*/

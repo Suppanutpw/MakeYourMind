@@ -1,5 +1,6 @@
 var choice_count = 0, is_before_bedis = true;
 var all_progess = ['กำหนดหัวข้อ', 'หาทางเลือก', 'กำหนดขอบเขต', 'ตัดสินใจ'];
+var all_effect = ['มากที่สุด', 'มาก', 'ปานกลาง', 'น้อย', 'น้อยที่สุด']
 var benefit_data_count = [], disadvantage_data_count = [];
 
 topic_form.onsubmit = function(events){ //When Form onsubmit
@@ -75,17 +76,39 @@ function choice_input_form(i, choiceName=""){
 
   return all_form;
 }
-function benefit_input_form(i, j, banefit_var="", isnewblock=false){
+function benefit_input_form(i, j, banefit_var="", isnewblock=false, effect=0){
   all_form = '<textarea name="benefitData'+ (i) + (j) +'" class="benefit_input' + (i) + '" placeholder="ข้อดี/ประโยชน์ที่ได้รับ">' + banefit_var + '</textarea>';
   all_form += '<button id="benefitremove" type="submit" onclick="remove_benefit_form(' + (i) + ', ' + (j) + ')"><i class="fa fa-times"></i></button>';
+
+  all_form += '<select class="effect" id="effect" style="font-family: kanit_semibold; font-size: calc(6px + 1vw); color: #fff;">';
+  all_form += '<option value="0" selected disabled>ผลกระทบในแง่บวก</option>';
+  for (i=0; i<5; i++) {
+    if (effect != 5-i) {
+      all_form += '<option value="' + (5-i) + '">' + all_effect[i] + '</option>';
+    }else {
+      all_form += '<option value="' + (5-i) + '" selected>' + all_effect[i] + '</option>';
+    }
+  }
+  all_form += '</select>';
 
   if (isnewblock)
     all_form = '<div id="addbedis_form" class="addbedis_form">' + all_form + '</div>';
   return all_form;
 }
-function disadvantage_input_form(i, j, disadvantage_var="", isnewblock=false){
+function disadvantage_input_form(i, j, disadvantage_var="", isnewblock=false, effect=0){
   all_form = '<textarea name="disadvantage_Data'+ (i) + (j) +'" class="disadvantage_input' + (i) + '" placeholder="ข้อเสีย/ความเสี่ยงที่จะเกิด">' + disadvantage_var + '</textarea>';
   all_form += '<button id="disadvantageremove" type="submit" onclick="remove_disadvantage_form(' + (i) + ', ' + (j) + ')"><i class="fa fa-times"></i></button>';
+
+  all_form += '<select class="effect" id="effect" style="font-family: kanit_semibold; font-size: calc(6px + 1vw); color: #fff;">';
+  all_form += '<option value="0" selected disabled>ผลกระทบในแง่ลบ</option>';
+  for (i=0; i<5; i++){
+    if (effect != 5-i) {
+      all_form += '<option value="' + 5-i + '">' + all_effect[i] + '</option>';
+    }else {
+      all_form += '<option value="' + 5-i + '" selected>' + all_effect[i] + '</option>';
+    }
+  }
+  all_form += '</select>';
 
   if (isnewblock)
     all_form = '<div id="addbedis_form" class="addbedis_form">' + all_form + '</div>'

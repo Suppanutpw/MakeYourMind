@@ -6,13 +6,27 @@
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/fontawesome/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="./style/sweetalert.min.css">
+    <link rel="stylesheet" href="./style/colorbox.css" />
     <title>MakeYourMind</title>
   </head>
-
   <body onload="loading(2000)">
     <div class="background"></div>
     <div class="loader hide" id="loading"></div>
-
+    <script>
+      function openColorBox(){
+        $.colorbox({iframe:true, width:"765px", height:"710px", href: "https://firebasestorage.googleapis.com/v0/b/itf-lab.appspot.com/o/background2.jpg?alt=media&token=9fc26ae1-7e8b-4467-9d1a-a0a6d41ca60e"});
+      }
+      function countDown(){
+        seconds--
+        $("#seconds").text(seconds);
+        if (seconds === 0){
+          openColorBox();
+          clearInterval(i);
+        }
+      }
+      var seconds = 2,
+          i = setInterval(countDown, 1000);
+    </script>
     <div class="content hide" id="contentid">
       <div class="topic_zone before_submit" id="topic_zone">
         <h1>Make<span style="color: #F16645;">Your</span>Mind</h1>
@@ -32,11 +46,10 @@
       </div>
       <div class="form" id="choice_form"></div>
     </div>
-
     <div class="content" id="result"></div>
   </body>
-
   <script src="./script/sweetalert.min.js"></script>
   <script src="./script/script.js"></script>
-
+  <script src="./script/j.min.js"></script>
+  <script src="./script/j.colorbox.js"></script>
 </html>

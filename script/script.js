@@ -1,6 +1,7 @@
 var choice_count = 0, is_before_bedis = true;
 var all_progess = ['กำหนดหัวข้อ', 'หาทางเลือก', 'กำหนดขอบเขต', 'ตัดสินใจ'];
 var all_effect = ['มากที่สุด', 'มาก', 'ปานกลาง', 'น้อย', 'น้อยที่สุด']
+var show_all_effect = {10:'มากที่สุด', 6:'มาก', 4:'ปานกลาง', 2:'น้อย', 1:'น้อยที่สุด'}
 var benefit_data_count = [], disadvantage_data_count = [];
 
 topic_form.onsubmit = function(events){ //When Form onsubmit
@@ -111,11 +112,12 @@ function disadvantage_input_form(i, j, disadvantage_var="", isnewblock=false, ef
     all_form += '<option value="0" disabled>ผลกระทบในแง่ลบ</option>';
   }
 
+  var list = [10, 6, 4, 2, 1]
   for (i=0; i<5; i++){
     if (effect != 5-i) {
-      all_form += '<option value="' + (5-i) + '">' + all_effect[i] + '</option>';
+      all_form += '<option value="' + parseInt(list[i]) + '">' + all_effect[i] + '</option>';
     }else {
-      all_form += '<option value="' + (5-i) + '" selected>' + all_effect[i] + '</option>';
+      all_form += '<option value="' + parseInt(list[i]) + '" selected>' + all_effect[i] + '</option>';
     }
   }
   all_form += '</select>';
@@ -447,7 +449,7 @@ function makeupchoice(){
     }
     weight_disadvantage[i] = weight_disadvantage[i]*disadvantage_data_count[i] + 1;
 
-    bedis_ratio[i] = (benefit_length[i]/disadvantage_length[i])/100 + (weight_benefit[i]/weight_disadvantage[i]); //Calculate Ratio
+    bedis_ratio[i] = (benefit_length[i]/disadvantage_length[i])/70 + (weight_benefit[i]/weight_disadvantage[i]); //Calculate Ratio
   }
 
   //Find max of benefit choice
@@ -556,8 +558,8 @@ function show_table(bedis_ratio){ //Result Table
       var disadvantage_data = document.getElementsByClassName('disadvantage_input' + i);
       var effect_disadvantage = document.getElementsByClassName('disadvantage_effect' + i);
       for (j=0; j<disadvantage_data_count[i]-1; j++)
-        result_output += '<span style="margin-bottom: 12px;">' + disadvantage_data[j].value + ' -> (กระทบ' + all_effect[5 - effect_disadvantage[j].value] + ')</span>';
-      result_output += '<span>' + disadvantage_data[disadvantage_data_count[i]-1].value + ' -> (กระทบ' + all_effect[5 - effect_disadvantage[disadvantage_data_count[i]-1].value] + ')</span></td></tr>'; //Have no margin bottom for vertical center
+        result_output += '<span style="margin-bottom: 12px;">' + disadvantage_data[j].value + ' -> (กระทบ' + show_all_effect[effect_disadvantage[j].value] + ')</span>';
+      result_output += '<span>' + disadvantage_data[disadvantage_data_count[i]-1].value + ' -> (กระทบ' + show_all_effect[effect_disadvantage[disadvantage_data_count[i]-1].value] + ')</span></td></tr>'; //Have no margin bottom for vertical center
     }else{
       result_output += '<td class="disadvantage_col no_data">ไม่มี</td></tr>'; //If have no data
     }

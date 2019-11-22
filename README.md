@@ -3,11 +3,11 @@
 This project was created to be used in the study of programming and for use in  PSIT(Problem Solving in Information Technology. The content is based on `5-step solution.`
 
 **5-Step solution**
-- [Define the problem](#Definetheproblem)
-- [Assume the problem](#Assumetheproblem)
-- [Collect the data](#Collectthedata)
-- [Analyze the data](#Analyzethedata)
-- [Conclude and Learning summary](#ConcludeandLearningsummary)
+- [Define the problem](#definetheproblem)
+- [Assume the problem](#assumetheproblem)
+- [Collect the data](#collectthedata)
+- [Analyze the data](#analyzethedata)
+- [Conclude and Learning summary](#concludeandlearningsummary)
 
 ## Define the problem
 - What are you trying to solve? In addition to getting clear on what the problem is, defining the problem also establishes a goal for what you want to achieve.

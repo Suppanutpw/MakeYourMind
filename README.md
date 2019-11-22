@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-###Make your Mine
-<html>
-<head>
-	<meta charset="utf-8">
-</head>
+#Make Your Mine
 
-<body>
-	<p>This project was created to be used in the study of programming and for use in the PSIT. The content is based on 5-step solution. 1.Determine the problem 2.Assume the problem 3.Collect the data 4.Analyze the data 5.Conclude and Learning summary</p>
-</body>
+This project was created to be used in the study of programming and for use in  PSIT(Problem Solving in Information Technology. The content is based on 5-step solution.
 
-
-
-
-</html>
+- Determine the problem
+- Assume the problem
+- Collect the data
+- Analyze the data
+- Conclude and Learning summary

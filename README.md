@@ -1,12 +1,12 @@
-# Make Your Mine
+# Make Your Mind
 
-This project was created to be used in the study of programming and for use in  PSIT(Problem Solving in Information Technology. The content is based on `5-step solution.`
+This project was created to be used in the study of programming and for use in  PSIT(Problem Solving in Information Technology). The content is based on `5-step solution.`
 
 **5-Step solution**
 - [Define the problem](#definetheproblem)
 - [Assume the problem](#assumetheproblem)
-- [Collect the data](#collectthedata)
-- [Analyze the data](#analyzethedata)
+- [Decide on a solution](#decideonasolution)
+- [Implement the solution](#implementthesolution)
 - [Conclude and Learning summary](#concludeandlearningsummary)
 
 ## Define the problem
@@ -20,13 +20,13 @@ This project was created to be used in the study of programming and for use in  
 - Input: a goal; research of the problem and possible solutions; imagination.
 - Output: pick-list of possible solutions that would achieve the stated goal.
 
-## Collect the data
+## Decide on a solution
 - What are you going to do? The ideal solution is effective (it will meet the goal), efficient (is affordable), and has the fewest side effects (limited consequences from implementation).
 
 - Input: pick-list of possible solutions; decision-making criteria.
 - Output:decision of what solution you will implement.
 
-## Analyze the data
+## Implement the solution
 - What are you doing? The implementation of a solution requires planning and execution. It’s often iterative, where the focus should be on short implementation cycles with testing and feedback, not trying to get it “perfect” the first time.
 
 - Input: decision; planning; hard work.
@@ -38,4 +38,42 @@ This project was created to be used in the study of programming and for use in  
 - Input: resolutions; results of the implementation.
 - Output: insights; case-studies; bullets on your resume.
 
-    
+โปรเจคนี้จัดทำขึ้นเพื่อใช้ในการศึกษาการเขียนโปรแกรมมิ่งและใช้ในรายวิชา PSIT(Problem Solving in Information Technology).โดยมีพื้นฐานมาจากการแก้ปัญหาเบื่องต้นใน 5 ขั้นตอน
+
+**การแก้ปัญหาเบื้องต้นใน5ขั้นตอน**
+-[กำหนดปัญหา](#กำหนดปัญหา)
+-[ตั้งสมมติฐาน](#ตั้งสมมติฐาน)
+-[เลือกวิธีการแก้ปัญหา](#เลือกวิธีการแก้ปัญหา)
+-[ใช้วิธีการที่เราเลือก](#ใช้วิธีการที่เราเลือก)
+-[สรุปผลและเรียนรู้](#สรุปผลและเรียนรู้)
+
+## กำหนดปัญหา
+- คิดให้ดีๆก่อนว่าเรากำลังพยายามจะแก้ปัญหาอะไร เพื่อให้แน่ชัดว่าเรากำลังแก้ปัญหาถูกจุดแล้ว การกำหนดปัญหายังช่วยกำหนดเป้าหมายที่เราหวังไว้ด้วย
+- Input : บางสิ่งที่ยังผิดหลาดหรือบางสิ่งที่ต้องพัฒนา
+- Output : เป้าหมายที่ชัดเจนและหนทางในการแก้ไข
+
+## ตั้งสมมติฐาน
+- คิดก่อนว่าวิธีแก้ปัญหา เป้าหมายคือการรวบรวมวิธีการแก้ปัญหาต่างๆเท่าที่จะเป็นไปได้ ยิ่งปัญหายากเท่าไหร่ วิธีการแก้อาจมีมากขึ้น
+- input : ผลจากการศึกษาปัญหาและวิธีแก้ปัญหา
+- output : เลือกวิธีแก้ที่คิดว่าจะทำให้เราบรรลุเป้าหมาย
+
+## เลือกวิธีการแก้ปัญหา
+- คิดว่าเรากำลังจะทำอะไร? วิธีแก้มีประสิทธิภาพขนาดไหน? และมีผลกระทบน้อยที่สุด
+- input : เลือกวิธีแก้และใช้วิจารณญาณในการตัดสินใจ
+- output : วิธีแก้ที่เราคิดว่ามีประสิทธิภาพมากที่สุด
+
+## ใช้วิธีการที่เราเลือก
+- เรากำลังทำอะไรอยู่? การนำวิธีแก้ปัญหาไปใช้ต้องมีการวางแผนและการดำเนินการ บ่อยครั้งที่จะลองซ้ำและทดสอบระยะสั้น อย่าพยายามทำให้มันสมบูรณ์แบบในครั้งแรกมากอาจทำให้เกิดปัญหาระยะยาวได้
+- input : การตัดสินใจ การวางแผนและการดำเนินการ
+- output : วิธีแก้ปัญหา
+
+## สรุปผลและเรียนรู้
+- คิดว่าเราได้ทำอะไรไปบ้าง? เพื่อที่จะรู้ว่าเรานั้นประสบผลสำเร็จไหม ประเด็นสำคัญก็คือว่ามันใช้งานได้จริงไหม อันไหนใช้ไม่ได้ ผลกระทบมีอะไร ซึ่งมันจะช่วยทำให้เราเห็นว่าเกิดอะไรขึ้นบ้างและช่วยปรับปรุงปัญหาต่างๆ ทักษะการแก้ปัญหา 
+- input : วิธีแก้ปัญหา ผลจากการตัดสินใจ
+- output : ผลลัพธ์ ข้อมูลเชิงลึก กรณีศึกษา
+
+### จัดทำโดย
+- นายปิยะ แก้วเกษ       62070121
+- นายวรธรรม เตมียชาติ   62070162
+- นายศุภณัฐ พลอยวงศ์    62070186
+- นายสิรภพ หมั่นสมัคร   62070199

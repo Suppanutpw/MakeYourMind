@@ -28,14 +28,14 @@
         };
         /*กำหนดเวลาหลังเปิดหน้าเว็บ ว่าจะให้แสดงหลังโหลดหน้าเว็บแล้วกี่วินาที*/
         $(window).load(function(){
-            var timer = window.setTimeout(show,1000);
+            var timer = window.setTimeout(show,2000);
         });
         </script>
   </head>
   <body onload="loading(2000)">
     <!-- modal -->
 <div id="myModal" class="modal fade">
-  <div class="modal-dialog modal-lg"> <!-- กำหนดขนาดของ modal เพิ่มได้นะครับ เช่น xs, sm, md, lg -->
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

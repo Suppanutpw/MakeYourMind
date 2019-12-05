@@ -42,6 +42,15 @@
   color: #B3B3B3;
 }
 
+/* slide-show */
+.modal-lg{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  margin: 0 !important;
+}
+
 /*sweetalert*/
 .btn-danger{
   color: #F0F0F0;
@@ -188,7 +197,6 @@ button{
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: blur(5px);
   z-index: -999;
 }
 

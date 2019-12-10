@@ -44,7 +44,11 @@ This project was created to be used in the study of programming and for use in  
 # ตัวอย่างการใช้โปรแกรม
 
 ![1.)ใส่หัวข้อปัญหา](/image/pic1.jpg)
-
+![2.)เพิ่มทางเลือก](/image/pic2.jpg)
+![3.)กำหนดขอบเขต](/image/pic3.jpg)
+![4.)เพิ่มข้อดีข้อเสีย](/image/pic4.jpg)
+![5.)ใส่ระดับผลกระทบ](/image/pic5.jpg)
+![6.)ตัดสินใจ](/image/pic6.jpg)
 
 **การแก้ปัญหาเบื้องต้นใน5ขั้นตอน**
 - [กำหนดปัญหา](#กำหนดปัญหา)
